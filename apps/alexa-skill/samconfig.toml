@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "bahn-lambda"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-l5h93bu9iwjk"
+s3_prefix = "bahn-lambda"
+region = "eu-west-1"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []

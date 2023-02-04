@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+    id       String    @id @default(auto()) @map("_id") @db.ObjectId
+    alexaUserId String
+    alexaDevices AlexaDevice[]
+    userStations Station[]
+    userLocations Location[]
+}
+
+type AlexaDevice {
+  deviceId String
+  location String
+}
+enum LocationType {
+  station
+  location
+}
+
+type Station{
+  type LocationType
+  userAssociatedName String
+  stationName String
+  stationId String
+}
+
+type Location{
+  userAssociatedName LocationType
+  adress String
+  latitude Float
+  longitude Float
+}
