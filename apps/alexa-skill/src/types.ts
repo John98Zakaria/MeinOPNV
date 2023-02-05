@@ -18,4 +18,6 @@ export type BahnSkillIntent =
     Exclude<GetNameFromList<typeof deModel.interactionModel.languageModel.intents>, AmazonPrefixIntents>
     | RawAlexaPrefixIntents
 
-
+export type AlexaIntent = {
+    name: BahnSkillIntent
+}

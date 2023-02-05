@@ -10,20 +10,25 @@
             "options": {
                 "commands": [
                     "tsc",
+                    "cp -r ../../node_modules dist/node_modules",
                     "cp package.json dist/package.json"
                 ],
                 "cwd": "apps/alexa-skill"
             },
-            "outputs": ["apps/alexa-skill/dist"]
+            "outputs": [
+                "apps/alexa-skill/dist"
+            ]
         },
         "set-model": {
             "executor": "nx:run-commands",
-            "inputs": ["{projectRoot}/src/de-model.json"],
+            "inputs": [
+                "{projectRoot}/src/de-model.json"
+            ],
             "options": {
                 "commands": [
-                    "ts-node-esm bin/object-to-json.ts deModel ./src/de-model.ts ./temp/de-model.json",
                     "mkdir -p temp",
-                    "ask smapi set-interaction-model --skill-id amzn1.ask.skill.89f9587f-84f1-4005-9478-f0844a5221f1 --stage development --locale de-DE --interaction-model file:dist/de-model.json"
+                    "ts-node-esm bin/object-to-json.ts deModel ../src/de-model.ts ./temp/de-model.json",
+                    "ask smapi set-interaction-model --skill-id amzn1.ask.skill.89f9587f-84f1-4005-9478-f0844a5221f1 --stage development --locale de-DE --interaction-model file:temp/de-model.json"
                 ],
                 "cwd": "apps/alexa-skill"
             }

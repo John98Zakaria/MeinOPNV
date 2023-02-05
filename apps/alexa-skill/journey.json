@@ -1,0 +1,1131 @@
+{
+  "laterRef": "2|OF|MT#14#82773#82773#82821#82821#0#0#325#82744#3#0#26#0#0#-2147483648#1#2|PDH#5da4f8e65d5286d964a803c081d3c867|RD#4022023|RT#104133|US#0",
+  "journeys": [
+    {
+      "type": "journey",
+      "legs": [
+        {
+          "origin": {
+            "type": "stop",
+            "id": "405243",
+            "name": "Oberstadt Kurmainz Kaserne, Mainz",
+            "location": {
+              "type": "location",
+              "id": "405243",
+              "latitude": 49.977426,
+              "longitude": 8.26995
+            },
+            "products": {
+              "nationalExpress": false,
+              "national": false,
+              "regionalExpress": false,
+              "regional": false,
+              "suburban": false,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "destination": {
+            "type": "stop",
+            "id": "518921",
+            "name": "Hauptbahnhof, Mainz",
+            "location": {
+              "type": "location",
+              "id": "518921",
+              "latitude": 50.001751,
+              "longitude": 8.259774
+            },
+            "products": {
+              "nationalExpress": true,
+              "national": true,
+              "regionalExpress": true,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            },
+            "station": {
+              "type": "station",
+              "id": "8000240",
+              "name": "Mainz Hbf",
+              "location": {
+                "type": "location",
+                "id": "8000240",
+                "latitude": 50.001239,
+                "longitude": 8.258453
+              },
+              "products": {
+                "nationalExpress": true,
+                "national": true,
+                "regionalExpress": true,
+                "regional": true,
+                "suburban": true,
+                "bus": true,
+                "ferry": false,
+                "subway": false,
+                "tram": true,
+                "taxi": false
+              }
+            }
+          },
+          "departure": "2023-02-04T11:03:00+01:00",
+          "plannedDeparture": "2023-02-04T11:03:00+01:00",
+          "departureDelay": 0,
+          "arrival": "2023-02-04T11:15:00+01:00",
+          "plannedArrival": "2023-02-04T11:15:00+01:00",
+          "arrivalDelay": 0,
+          "reachable": true,
+          "tripId": "1|513006|3|80|4022023",
+          "line": {
+            "type": "line",
+            "id": "8-rmv243-50",
+            "fahrtNr": "3429",
+            "name": "STR 50",
+            "public": true,
+            "adminCode": "rmv243",
+            "productName": "STR",
+            "mode": "train",
+            "product": "tram"
+          },
+          "direction": "Poststraße, Mainz",
+          "arrivalPlatform": null,
+          "plannedArrivalPlatform": null,
+          "arrivalPrognosisType": "prognosed",
+          "departurePlatform": null,
+          "plannedDeparturePlatform": null,
+          "departurePrognosisType": "prognosed",
+          "cycle": {
+            "min": 180,
+            "max": 600,
+            "nr": 19
+          },
+          "alternatives": [
+            {
+              "tripId": "1|527087|3|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-53",
+                "fahrtNr": "5182",
+                "name": "STR 53",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Lerchenberg Hindemithstraße, Mainz",
+              "when": "2023-02-04T11:13:00+01:00",
+              "plannedWhen": "2023-02-04T11:13:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|525305|3|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-52",
+                "fahrtNr": "4928",
+                "name": "STR 52",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Bretzenheim Bahnstraße, Mainz",
+              "when": "2023-02-04T11:20:00+01:00",
+              "plannedWhen": "2023-02-04T11:20:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|513006|4|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-50",
+                "fahrtNr": "3427",
+                "name": "STR 50",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Poststraße, Mainz",
+              "when": "2023-02-04T11:23:00+01:00",
+              "plannedWhen": "2023-02-04T11:23:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|527087|4|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-53",
+                "fahrtNr": "5179",
+                "name": "STR 53",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Lerchenberg Hindemithstraße, Mainz",
+              "when": "2023-02-04T11:33:00+01:00",
+              "plannedWhen": "2023-02-04T11:33:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|525305|4|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-52",
+                "fahrtNr": "4927",
+                "name": "STR 52",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Bretzenheim Bahnstraße, Mainz",
+              "when": "2023-02-04T11:40:00+01:00",
+              "plannedWhen": "2023-02-04T11:40:00+01:00",
+              "delay": null
+            }
+          ]
+        },
+        {
+          "origin": {
+            "type": "stop",
+            "id": "518921",
+            "name": "Hauptbahnhof, Mainz",
+            "location": {
+              "type": "location",
+              "id": "518921",
+              "latitude": 50.001751,
+              "longitude": 8.259774
+            },
+            "products": {
+              "nationalExpress": true,
+              "national": true,
+              "regionalExpress": true,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            },
+            "station": {
+              "type": "station",
+              "id": "8000240",
+              "name": "Mainz Hbf",
+              "location": {
+                "type": "location",
+                "id": "8000240",
+                "latitude": 50.001239,
+                "longitude": 8.258453
+              },
+              "products": {
+                "nationalExpress": true,
+                "national": true,
+                "regionalExpress": true,
+                "regional": true,
+                "suburban": true,
+                "bus": true,
+                "ferry": false,
+                "subway": false,
+                "tram": true,
+                "taxi": false
+              }
+            }
+          },
+          "destination": {
+            "type": "stop",
+            "id": "8000240",
+            "name": "Mainz Hbf",
+            "location": {
+              "type": "location",
+              "id": "8000240",
+              "latitude": 50.001239,
+              "longitude": 8.258453
+            },
+            "products": {
+              "nationalExpress": true,
+              "national": true,
+              "regionalExpress": true,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "departure": "2023-02-04T11:15:00+01:00",
+          "plannedDeparture": "2023-02-04T11:15:00+01:00",
+          "departureDelay": null,
+          "arrival": "2023-02-04T11:20:00+01:00",
+          "plannedArrival": "2023-02-04T11:20:00+01:00",
+          "arrivalDelay": null,
+          "public": true,
+          "walking": true,
+          "distance": 103
+        },
+        {
+          "origin": {
+            "type": "stop",
+            "id": "8000240",
+            "name": "Mainz Hbf",
+            "location": {
+              "type": "location",
+              "id": "8000240",
+              "latitude": 50.001239,
+              "longitude": 8.258453
+            },
+            "products": {
+              "nationalExpress": true,
+              "national": true,
+              "regionalExpress": true,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "destination": {
+            "type": "stop",
+            "id": "8000068",
+            "name": "Darmstadt Hbf",
+            "location": {
+              "type": "location",
+              "id": "8000068",
+              "latitude": 49.872549,
+              "longitude": 8.629707
+            },
+            "products": {
+              "nationalExpress": true,
+              "national": true,
+              "regionalExpress": true,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "departure": "2023-02-04T11:22:00+01:00",
+          "plannedDeparture": "2023-02-04T11:22:00+01:00",
+          "departureDelay": 0,
+          "arrival": "2023-02-04T11:50:00+01:00",
+          "plannedArrival": "2023-02-04T11:50:00+01:00",
+          "arrivalDelay": 0,
+          "reachable": true,
+          "tripId": "1|186303|1|80|4022023",
+          "line": {
+            "type": "line",
+            "id": "hlb-rb75",
+            "fahrtNr": "28763",
+            "name": "HLB RB75",
+            "public": true,
+            "adminCode": "K4RB__",
+            "productName": "HLB",
+            "mode": "train",
+            "product": "regional",
+            "operator": {
+              "type": "operator",
+              "id": "hlb-hessenbahn-gmbh",
+              "name": "HLB Hessenbahn GmbH"
+            },
+            "additionalName": "HLB RB75"
+          },
+          "direction": "Darmstadt Hbf",
+          "arrivalPlatform": "8",
+          "plannedArrivalPlatform": "8",
+          "arrivalPrognosisType": "prognosed",
+          "departurePlatform": "4a",
+          "plannedDeparturePlatform": "4a",
+          "departurePrognosisType": "prognosed"
+        }
+      ],
+      "refreshToken": "T$A=1@O=Oberstadt Kurmainz Kaserne, Mainz@L=405243@a=128@$A=1@O=Hauptbahnhof, Mainz@L=518921@a=128@$202302041103$202302041115$STR   50$$1$$$$$$§W$A=1@O=Hauptbahnhof, Mainz@L=518921@a=128@$A=1@O=Mainz Hbf@L=8000240@a=128@$202302041115$202302041120$$$1$$$$$$§T$A=1@O=Mainz Hbf@L=8000240@a=128@$A=1@O=Darmstadt Hbf@L=8000068@a=128@$202302041122$202302041150$HLB28763$$1$$$$$$",
+      "cycle": {
+        "min": 180
+      },
+      "price": null
+    },
+    {
+      "type": "journey",
+      "legs": [
+        {
+          "origin": {
+            "type": "stop",
+            "id": "405243",
+            "name": "Oberstadt Kurmainz Kaserne, Mainz",
+            "location": {
+              "type": "location",
+              "id": "405243",
+              "latitude": 49.977426,
+              "longitude": 8.26995
+            },
+            "products": {
+              "nationalExpress": false,
+              "national": false,
+              "regionalExpress": false,
+              "regional": false,
+              "suburban": false,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "destination": {
+            "type": "stop",
+            "id": "518921",
+            "name": "Hauptbahnhof, Mainz",
+            "location": {
+              "type": "location",
+              "id": "518921",
+              "latitude": 50.001751,
+              "longitude": 8.259774
+            },
+            "products": {
+              "nationalExpress": true,
+              "national": true,
+              "regionalExpress": true,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            },
+            "station": {
+              "type": "station",
+              "id": "8000240",
+              "name": "Mainz Hbf",
+              "location": {
+                "type": "location",
+                "id": "8000240",
+                "latitude": 50.001239,
+                "longitude": 8.258453
+              },
+              "products": {
+                "nationalExpress": true,
+                "national": true,
+                "regionalExpress": true,
+                "regional": true,
+                "suburban": true,
+                "bus": true,
+                "ferry": false,
+                "subway": false,
+                "tram": true,
+                "taxi": false
+              }
+            }
+          },
+          "departure": "2023-02-04T11:23:00+01:00",
+          "plannedDeparture": "2023-02-04T11:23:00+01:00",
+          "departureDelay": 0,
+          "arrival": "2023-02-04T11:35:00+01:00",
+          "plannedArrival": "2023-02-04T11:35:00+01:00",
+          "arrivalDelay": 0,
+          "reachable": true,
+          "tripId": "1|513006|4|80|4022023",
+          "line": {
+            "type": "line",
+            "id": "8-rmv243-50",
+            "fahrtNr": "3427",
+            "name": "STR 50",
+            "public": true,
+            "adminCode": "rmv243",
+            "productName": "STR",
+            "mode": "train",
+            "product": "tram"
+          },
+          "direction": "Poststraße, Mainz",
+          "arrivalPlatform": null,
+          "plannedArrivalPlatform": null,
+          "arrivalPrognosisType": "prognosed",
+          "departurePlatform": null,
+          "plannedDeparturePlatform": null,
+          "departurePrognosisType": "prognosed",
+          "cycle": {
+            "min": 180,
+            "max": 600,
+            "nr": 19
+          },
+          "alternatives": [
+            {
+              "tripId": "1|527087|4|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-53",
+                "fahrtNr": "5179",
+                "name": "STR 53",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Lerchenberg Hindemithstraße, Mainz",
+              "when": "2023-02-04T11:33:00+01:00",
+              "plannedWhen": "2023-02-04T11:33:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|525305|4|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-52",
+                "fahrtNr": "4927",
+                "name": "STR 52",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Bretzenheim Bahnstraße, Mainz",
+              "when": "2023-02-04T11:40:00+01:00",
+              "plannedWhen": "2023-02-04T11:40:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|513006|5|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-50",
+                "fahrtNr": "3424",
+                "name": "STR 50",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Poststraße, Mainz",
+              "when": "2023-02-04T11:43:00+01:00",
+              "plannedWhen": "2023-02-04T11:43:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|527087|5|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-53",
+                "fahrtNr": "5177",
+                "name": "STR 53",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Lerchenberg Hindemithstraße, Mainz",
+              "when": "2023-02-04T11:53:00+01:00",
+              "plannedWhen": "2023-02-04T11:53:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|525305|5|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-52",
+                "fahrtNr": "4926",
+                "name": "STR 52",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Bretzenheim Bahnstraße, Mainz",
+              "when": "2023-02-04T12:00:00+01:00",
+              "plannedWhen": "2023-02-04T12:00:00+01:00",
+              "delay": null
+            }
+          ]
+        },
+        {
+          "origin": {
+            "type": "stop",
+            "id": "518921",
+            "name": "Hauptbahnhof, Mainz",
+            "location": {
+              "type": "location",
+              "id": "518921",
+              "latitude": 50.001751,
+              "longitude": 8.259774
+            },
+            "products": {
+              "nationalExpress": true,
+              "national": true,
+              "regionalExpress": true,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            },
+            "station": {
+              "type": "station",
+              "id": "8000240",
+              "name": "Mainz Hbf",
+              "location": {
+                "type": "location",
+                "id": "8000240",
+                "latitude": 50.001239,
+                "longitude": 8.258453
+              },
+              "products": {
+                "nationalExpress": true,
+                "national": true,
+                "regionalExpress": true,
+                "regional": true,
+                "suburban": true,
+                "bus": true,
+                "ferry": false,
+                "subway": false,
+                "tram": true,
+                "taxi": false
+              }
+            }
+          },
+          "destination": {
+            "type": "stop",
+            "id": "8000240",
+            "name": "Mainz Hbf",
+            "location": {
+              "type": "location",
+              "id": "8000240",
+              "latitude": 50.001239,
+              "longitude": 8.258453
+            },
+            "products": {
+              "nationalExpress": true,
+              "national": true,
+              "regionalExpress": true,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "departure": "2023-02-04T11:35:00+01:00",
+          "plannedDeparture": "2023-02-04T11:35:00+01:00",
+          "departureDelay": null,
+          "arrival": "2023-02-04T11:40:00+01:00",
+          "plannedArrival": "2023-02-04T11:40:00+01:00",
+          "arrivalDelay": null,
+          "public": true,
+          "walking": true,
+          "distance": 103
+        },
+        {
+          "origin": {
+            "type": "stop",
+            "id": "8000240",
+            "name": "Mainz Hbf",
+            "location": {
+              "type": "location",
+              "id": "8000240",
+              "latitude": 50.001239,
+              "longitude": 8.258453
+            },
+            "products": {
+              "nationalExpress": true,
+              "national": true,
+              "regionalExpress": true,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "destination": {
+            "type": "stop",
+            "id": "8000068",
+            "name": "Darmstadt Hbf",
+            "location": {
+              "type": "location",
+              "id": "8000068",
+              "latitude": 49.872549,
+              "longitude": 8.629707
+            },
+            "products": {
+              "nationalExpress": true,
+              "national": true,
+              "regionalExpress": true,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "departure": "2023-02-04T11:49:00+01:00",
+          "plannedDeparture": "2023-02-04T11:49:00+01:00",
+          "departureDelay": 0,
+          "arrival": "2023-02-04T12:21:00+01:00",
+          "plannedArrival": "2023-02-04T12:21:00+01:00",
+          "arrivalDelay": 0,
+          "reachable": true,
+          "tripId": "1|186236|0|80|4022023",
+          "line": {
+            "type": "line",
+            "id": "hlb-rb75",
+            "fahrtNr": "28715",
+            "name": "HLB RB75",
+            "public": true,
+            "adminCode": "K4RB__",
+            "productName": "HLB",
+            "mode": "train",
+            "product": "regional",
+            "operator": {
+              "type": "operator",
+              "id": "hlb-hessenbahn-gmbh",
+              "name": "HLB Hessenbahn GmbH"
+            },
+            "additionalName": "HLB RB75"
+          },
+          "direction": "Aschaffenburg Hbf",
+          "arrivalPlatform": "8",
+          "plannedArrivalPlatform": "8",
+          "arrivalPrognosisType": "prognosed",
+          "departurePlatform": "4a",
+          "plannedDeparturePlatform": "4a",
+          "departurePrognosisType": "prognosed"
+        }
+      ],
+      "refreshToken": "T$A=1@O=Oberstadt Kurmainz Kaserne, Mainz@L=405243@a=128@$A=1@O=Hauptbahnhof, Mainz@L=518921@a=128@$202302041123$202302041135$STR   50$$1$$$$$$§W$A=1@O=Hauptbahnhof, Mainz@L=518921@a=128@$A=1@O=Mainz Hbf@L=8000240@a=128@$202302041135$202302041140$$$1$$$$$$§T$A=1@O=Mainz Hbf@L=8000240@a=128@$A=1@O=Darmstadt Hbf@L=8000068@a=128@$202302041149$202302041221$HLB28715$$1$$$$$$",
+      "cycle": {
+        "min": 180
+      },
+      "price": null
+    },
+    {
+      "type": "journey",
+      "legs": [
+        {
+          "origin": {
+            "type": "stop",
+            "id": "405243",
+            "name": "Oberstadt Kurmainz Kaserne, Mainz",
+            "location": {
+              "type": "location",
+              "id": "405243",
+              "latitude": 49.977426,
+              "longitude": 8.26995
+            },
+            "products": {
+              "nationalExpress": false,
+              "national": false,
+              "regionalExpress": false,
+              "regional": false,
+              "suburban": false,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "destination": {
+            "type": "stop",
+            "id": "408008",
+            "name": "Pariser Tor, Mainz",
+            "location": {
+              "type": "location",
+              "id": "408008",
+              "latitude": 49.986352,
+              "longitude": 8.265941
+            },
+            "products": {
+              "nationalExpress": false,
+              "national": false,
+              "regionalExpress": false,
+              "regional": false,
+              "suburban": false,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "departure": "2023-02-04T11:33:00+01:00",
+          "plannedDeparture": "2023-02-04T11:33:00+01:00",
+          "departureDelay": 0,
+          "arrival": "2023-02-04T11:35:00+01:00",
+          "plannedArrival": "2023-02-04T11:35:00+01:00",
+          "arrivalDelay": 0,
+          "reachable": true,
+          "tripId": "1|527087|4|80|4022023",
+          "line": {
+            "type": "line",
+            "id": "8-rmv243-53",
+            "fahrtNr": "5179",
+            "name": "STR 53",
+            "public": true,
+            "adminCode": "rmv243",
+            "productName": "STR",
+            "mode": "train",
+            "product": "tram"
+          },
+          "direction": "Lerchenberg Hindemithstraße, Mainz",
+          "arrivalPlatform": null,
+          "plannedArrivalPlatform": null,
+          "arrivalPrognosisType": "prognosed",
+          "departurePlatform": null,
+          "plannedDeparturePlatform": null,
+          "departurePrognosisType": "prognosed",
+          "cycle": {
+            "min": 180,
+            "max": 600,
+            "nr": 19
+          },
+          "alternatives": [
+            {
+              "tripId": "1|525305|4|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-52",
+                "fahrtNr": "4927",
+                "name": "STR 52",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Bretzenheim Bahnstraße, Mainz",
+              "when": "2023-02-04T11:40:00+01:00",
+              "plannedWhen": "2023-02-04T11:40:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|513006|5|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-50",
+                "fahrtNr": "3424",
+                "name": "STR 50",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Poststraße, Mainz",
+              "when": "2023-02-04T11:43:00+01:00",
+              "plannedWhen": "2023-02-04T11:43:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|527087|5|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-53",
+                "fahrtNr": "5177",
+                "name": "STR 53",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Lerchenberg Hindemithstraße, Mainz",
+              "when": "2023-02-04T11:53:00+01:00",
+              "plannedWhen": "2023-02-04T11:53:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|525305|5|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-52",
+                "fahrtNr": "4926",
+                "name": "STR 52",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Bretzenheim Bahnstraße, Mainz",
+              "when": "2023-02-04T12:00:00+01:00",
+              "plannedWhen": "2023-02-04T12:00:00+01:00",
+              "delay": null
+            },
+            {
+              "tripId": "1|513006|6|80|4022023",
+              "line": {
+                "type": "line",
+                "id": "8-rmv243-50",
+                "fahrtNr": "3422",
+                "name": "STR 50",
+                "public": true,
+                "adminCode": "rmv243",
+                "productName": "STR",
+                "mode": "train",
+                "product": "tram"
+              },
+              "direction": "Poststraße, Mainz",
+              "when": "2023-02-04T12:03:00+01:00",
+              "plannedWhen": "2023-02-04T12:03:00+01:00",
+              "delay": null
+            }
+          ]
+        },
+        {
+          "origin": {
+            "type": "stop",
+            "id": "408008",
+            "name": "Pariser Tor, Mainz",
+            "location": {
+              "type": "location",
+              "id": "408008",
+              "latitude": 49.986352,
+              "longitude": 8.265941
+            },
+            "products": {
+              "nationalExpress": false,
+              "national": false,
+              "regionalExpress": false,
+              "regional": false,
+              "suburban": false,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "destination": {
+            "type": "stop",
+            "id": "125969",
+            "name": "Oberstadt Eisgrubweg, Mainz",
+            "location": {
+              "type": "location",
+              "id": "125969",
+              "latitude": 49.994613,
+              "longitude": 8.273735
+            },
+            "products": {
+              "nationalExpress": false,
+              "national": false,
+              "regionalExpress": false,
+              "regional": false,
+              "suburban": false,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": false,
+              "taxi": false
+            }
+          },
+          "departure": "2023-02-04T11:39:00+01:00",
+          "plannedDeparture": "2023-02-04T11:39:00+01:00",
+          "departureDelay": 0,
+          "arrival": "2023-02-04T11:41:00+01:00",
+          "plannedArrival": "2023-02-04T11:41:00+01:00",
+          "arrivalDelay": 0,
+          "reachable": true,
+          "tripId": "1|491869|1|80|4022023",
+          "line": {
+            "type": "line",
+            "id": "5-rmv242-71",
+            "fahrtNr": "16385",
+            "name": "Bus 71",
+            "public": true,
+            "adminCode": "rmv242",
+            "productName": "Bus",
+            "mode": "bus",
+            "product": "bus"
+          },
+          "direction": "Straßenbahnamt/LBBW, Mainz",
+          "arrivalPlatform": null,
+          "plannedArrivalPlatform": null,
+          "arrivalPrognosisType": "prognosed",
+          "departurePlatform": null,
+          "plannedDeparturePlatform": null,
+          "departurePrognosisType": "prognosed",
+          "cycle": {
+            "min": 900,
+            "max": 900,
+            "nr": 9
+          }
+        },
+        {
+          "origin": {
+            "type": "stop",
+            "id": "125969",
+            "name": "Oberstadt Eisgrubweg, Mainz",
+            "location": {
+              "type": "location",
+              "id": "125969",
+              "latitude": 49.994613,
+              "longitude": 8.273735
+            },
+            "products": {
+              "nationalExpress": false,
+              "national": false,
+              "regionalExpress": false,
+              "regional": false,
+              "suburban": false,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": false,
+              "taxi": false
+            }
+          },
+          "destination": {
+            "type": "stop",
+            "id": "8003816",
+            "name": "Mainz Römisches Theater",
+            "location": {
+              "type": "location",
+              "id": "8003816",
+              "latitude": 49.993517,
+              "longitude": 8.277393
+            },
+            "products": {
+              "nationalExpress": false,
+              "national": false,
+              "regionalExpress": false,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": false,
+              "taxi": false
+            }
+          },
+          "departure": "2023-02-04T11:41:00+01:00",
+          "plannedDeparture": "2023-02-04T11:41:00+01:00",
+          "departureDelay": null,
+          "arrival": "2023-02-04T11:49:00+01:00",
+          "plannedArrival": "2023-02-04T11:49:00+01:00",
+          "arrivalDelay": null,
+          "public": true,
+          "walking": true,
+          "distance": 302
+        },
+        {
+          "origin": {
+            "type": "stop",
+            "id": "8003816",
+            "name": "Mainz Römisches Theater",
+            "location": {
+              "type": "location",
+              "id": "8003816",
+              "latitude": 49.993517,
+              "longitude": 8.277393
+            },
+            "products": {
+              "nationalExpress": false,
+              "national": false,
+              "regionalExpress": false,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": false,
+              "taxi": false
+            }
+          },
+          "destination": {
+            "type": "stop",
+            "id": "8000068",
+            "name": "Darmstadt Hbf",
+            "location": {
+              "type": "location",
+              "id": "8000068",
+              "latitude": 49.872549,
+              "longitude": 8.629707
+            },
+            "products": {
+              "nationalExpress": true,
+              "national": true,
+              "regionalExpress": true,
+              "regional": true,
+              "suburban": true,
+              "bus": true,
+              "ferry": false,
+              "subway": false,
+              "tram": true,
+              "taxi": false
+            }
+          },
+          "departure": "2023-02-04T11:52:00+01:00",
+          "plannedDeparture": "2023-02-04T11:52:00+01:00",
+          "departureDelay": 0,
+          "arrival": "2023-02-04T12:21:00+01:00",
+          "plannedArrival": "2023-02-04T12:21:00+01:00",
+          "arrivalDelay": 0,
+          "reachable": true,
+          "tripId": "1|186236|0|80|4022023",
+          "line": {
+            "type": "line",
+            "id": "hlb-rb75",
+            "fahrtNr": "28715",
+            "name": "HLB RB75",
+            "public": true,
+            "adminCode": "K4RB__",
+            "productName": "HLB",
+            "mode": "train",
+            "product": "regional",
+            "operator": {
+              "type": "operator",
+              "id": "hlb-hessenbahn-gmbh",
+              "name": "HLB Hessenbahn GmbH"
+            },
+            "additionalName": "HLB RB75"
+          },
+          "direction": "Aschaffenburg Hbf",
+          "arrivalPlatform": "8",
+          "plannedArrivalPlatform": "8",
+          "arrivalPrognosisType": "prognosed",
+          "departurePlatform": "3",
+          "plannedDeparturePlatform": "3",
+          "departurePrognosisType": "prognosed"
+        }
+      ],
+      "refreshToken": "T$A=1@O=Oberstadt Kurmainz Kaserne, Mainz@L=405243@a=128@$A=1@O=Pariser Tor, Mainz@L=408008@a=128@$202302041133$202302041135$STR   53$$1$$$$$$§T$A=1@O=Pariser Tor, Mainz@L=408008@a=128@$A=1@O=Oberstadt Eisgrubweg, Mainz@L=125969@a=128@$202302041139$202302041141$Bus   71$$1$$$$$$§W$A=1@O=Oberstadt Eisgrubweg, Mainz@L=125969@a=128@$A=1@O=Mainz Römisches Theater@L=8003816@a=128@$202302041141$202302041149$$$1$$$$$$§T$A=1@O=Mainz Römisches Theater@L=8003816@a=128@$A=1@O=Darmstadt Hbf@L=8000068@a=128@$202302041152$202302041221$HLB28715$$1$$$$$$",
+      "cycle": {
+        "min": 900
+      },
+      "price": null
+    }
+  ],
+  "realtimeDataUpdatedAt": 1675503821
+}
