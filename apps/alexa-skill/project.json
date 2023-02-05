@@ -1,62 +1,62 @@
 {
-    "name": "alexa-skill",
-    "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "apps/alexa-skill/src",
-    "projectType": "application",
-    "generators": {},
-    "targets": {
-        "build": {
-            "executor": "nx:run-commands",
-            "options": {
-                "commands": [
-                    "tsc",
-                    "cp -r ../../node_modules dist/node_modules",
-                    "cp package.json dist/package.json"
-                ],
-                "cwd": "apps/alexa-skill"
-            },
-            "outputs": [
-                "apps/alexa-skill/dist"
-            ]
-        },
-        "set-model": {
-            "executor": "nx:run-commands",
-            "inputs": [
-                "{projectRoot}/src/de-model.json"
-            ],
-            "options": {
-                "commands": [
-                    "mkdir -p temp",
-                    "ts-node-esm bin/object-to-json.ts deModel ../src/de-model.ts ./temp/de-model.json",
-                    "ask smapi set-interaction-model --skill-id amzn1.ask.skill.89f9587f-84f1-4005-9478-f0844a5221f1 --stage development --locale de-DE --interaction-model file:temp/de-model.json"
-                ],
-                "cwd": "apps/alexa-skill"
-            }
-        },
-        "get-model": {
-            "executor": "nx:run-commands",
-            "options": {
-                "commands": [
-                    "bash ./bin/get-langaue-model.sh"
-                ],
-                "cwd": "apps/alexa-skill"
-            }
-        },
-        "deploy": {
-            "executor": "nx:run-commands",
-            "dependsOn": [
-                "build"
-            ],
-            "options": {
-                "commands": [
-                    "sam deploy"
-                ],
-                "cwd": "apps/alexa-skill"
-            }
-        }
+  "name": "alexa-skill",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/alexa-skill/src",
+  "projectType": "application",
+  "generators": {},
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc",
+          "cp -r ../../node_modules dist/node_modules",
+          "cp package.json dist/package.json"
+        ],
+        "cwd": "apps/alexa-skill"
+      },
+      "outputs": [
+        "apps/alexa-skill/dist"
+      ]
     },
-    "tags": [
-        "type:app",
-        "scope:alexa"
-    ]
+    "set-model": {
+      "executor": "nx:run-commands",
+      "inputs": [
+        "{projectRoot}/src/de-model.json"
+      ],
+      "options": {
+        "commands": [
+          "mkdir -p temp",
+          "ts-node-esm bin/object-to-json.ts deModel ../src/de-model.ts ./temp/de-model.json",
+          "ask smapi set-interaction-model --skill-id amzn1.ask.skill.89f9587f-84f1-4005-9478-f0844a5221f1 --stage development --locale de-DE --interaction-model file:temp/de-model.json"
+        ],
+        "cwd": "apps/alexa-skill"
+      }
+    },
+    "get-model": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "bash ./bin/get-langaue-model.sh"
+        ],
+        "cwd": "apps/alexa-skill"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        "build"
+      ],
+      "options": {
+        "commands": [
+          "sam deploy"
+        ],
+        "cwd": "apps/alexa-skill"
+      }
+    }
+  },
+  "tags": [
+    "type:app",
+    "scope:alexa"
+  ]
 }

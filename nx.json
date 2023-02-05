@@ -1,44 +1,44 @@
 {
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "package-based",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/nx-cloud",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "deploy",
-          "lint",
-          "test",
-          "e2e"
-        ],
-        "accessToken": "NDkzMDQ2NWItYWNkMC00YzhmLWI2ZDctMzI5MDg2NzlmZjlkfHJlYWQtd3JpdGU="
-      }
-    }
-  },
-  "targetDefaults": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "npmScope": "package-based",
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/nx-cloud",
+            "options": {
+                "cacheableOperations": [
+                    "build",
+                    "deploy",
+                    "lint",
+                    "test",
+                    "e2e"
+                ],
+                "accessToken": "NDkzMDQ2NWItYWNkMC00YzhmLWI2ZDctMzI5MDg2NzlmZjlkfHJlYWQtd3JpdGU="
+            }
+        }
     },
-    "deploy": {
-      "dependsOn": [
-        "^build"
-      ]
+    "targetDefaults": {
+        "build": {
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "{projectRoot}/dist"
+            ]
+        },
+        "deploy": {
+            "dependsOn": [
+                "^build"
+            ]
+        }
+    },
+    "namedInputs": {
+        "default": [
+            "{projectRoot}/**/*",
+            "sharedGlobals"
+        ],
+        "compiled-ts": [
+            "{projectRoot}/dist/**"
+        ],
+        "sharedGlobals": []
     }
-  },
-  "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
-    "compiled-ts": [
-      "{projectRoot}/dist/**"
-    ],
-    "sharedGlobals": []
-  }
 }

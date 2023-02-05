@@ -7,7 +7,7 @@ import { getSlotValues } from '../helpers/slot-extractors.js';
 import { deModel } from '../de-model.js';
 import { createClient } from 'hafas-client';
 
-export const bahnClient = createClient(profile,'aws-lambda-bahn');
+export const bahnClient = createClient(profile, 'aws-lambda-bahn');
 
 type AddStationIntentType = (typeof deModel.interactionModel.languageModel.intents[number] & { name: 'AddStationIntent' })
 

@@ -16,14 +16,14 @@ export const deModel = {
                 'name': 'AddStationIntent',
                 'slots': [
                     {
-                    'name': 'adresse',
-                    'type': 'AMAZON.StreetName',
-                    'samples': ['Die adresse lautet {adresse}', '{adresse}']
-                }, {
-                    'name': 'bekannterOrt',
-                    'type': 'BekannteOrte',
-                    'samples': ['{bekannterOrt}', 'Der ort soll {bekannterOrt} heisen.']
-                },
+                        'name': 'adresse',
+                        'type': 'AMAZON.StreetName',
+                        'samples': ['Die adresse lautet {adresse}', '{adresse}']
+                    }, {
+                        'name': 'bekannterOrt',
+                        'type': 'BekannteOrte',
+                        'samples': ['{bekannterOrt}', 'Der ort soll {bekannterOrt} heisen.']
+                    },
                     { 'name': 'ListChoice', 'type': 'AMAZON.NUMBER' }],
                 'samples': ['Speichere {adresse} als {bekannterOrt}', 'Merke dir einen Neunen Ort', 'Speichere einen Neuen Ort']
             }],

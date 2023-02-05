@@ -1,12 +1,13 @@
 import * as fs from 'fs';
 import { parseFilePath } from './common.js';
+
 const modelName = process.argv[2];
 const inputFilePath = process.argv[3];
 const outputFilePath = process.argv[4];
 
 console.error(inputFilePath);
 console.error(process.cwd());
-console.log(process.argv)
+console.log(process.argv);
 
 
 if (modelName === undefined
