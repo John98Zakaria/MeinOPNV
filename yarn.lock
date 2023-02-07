@@ -414,10 +414,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.11.18, @types/node@npm:latest":
-  version: 18.11.18
-  resolution: "@types/node@npm:18.11.18"
-  checksum: 03f17f9480f8d775c8a72da5ea7e9383db5f6d85aa5fefde90dd953a1449bd5e4ffde376f139da4f3744b4c83942166d2a7603969a6f8ea826edfb16e6e3b49d
+"@types/node@latest, @types/node@npm:^18.11.18":
+  version: 18.11.19
+  resolution: "@types/node@npm:18.11.19"
+  checksum: d7cd19fcfc59cbdd3f9ba0b4072cb7adc21bd575bd8eb7d7e698975e63564aaa83f03434f32b12331f84f73d0b369d9cbe2371e359d9d7f5c3361f4987f4f7da
   languageName: node
   linkType: hard
 
@@ -443,12 +443,12 @@ __metadata:
   linkType: hard
 
 "@yarnpkg/parsers@npm:^3.0.0-rc.18":
-  version: 3.0.0-rc.37
-  resolution: "@yarnpkg/parsers@npm:3.0.0-rc.37"
+  version: 3.0.0-rc.38
+  resolution: "@yarnpkg/parsers@npm:3.0.0-rc.38"
   dependencies:
     js-yaml: ^3.10.0
     tslib: ^2.4.0
-  checksum: a6d351fbfd6f14c46f48779594b1015709605310629fae9fdeaf2e58ba87b48222a668c4b656926c2c960495491d6e465d25de7d076fa3dfe3f7f321013d80c1
+  checksum: 947c9828ff18b797eae88ea43fc6a6d290528b2304a146d12cae67fee07334e61548a11f362fe34c13257e18724d11bf87d5e4eeff40ff8c8f84b71fdc19261a
   languageName: node
   linkType: hard
 
@@ -784,9 +784,9 @@ __metadata:
   linkType: hard
 
 "ask-sdk-model@npm:^1.44.0":
-  version: 1.44.0
-  resolution: "ask-sdk-model@npm:1.44.0"
-  checksum: d02814d076d7e8152b82dac55d6b8d64822eea19d2a2ce0476887b0d0620688f61f8e36c2f94d4075621f7ac250e0986e17b343493a448604c83c439d0b96fd5
+  version: 1.45.0
+  resolution: "ask-sdk-model@npm:1.45.0"
+  checksum: 21a1dfcef2514cb520fb7c4bd557b9a441c7c15a22a17bd6f9e1aafcc8a292f6f7b3d4bba7149fe423cc1d5a93696e229a945a3179aa4cc7f4df231c0d86ad99
   languageName: node
   linkType: hard
 
@@ -878,8 +878,8 @@ __metadata:
   linkType: hard
 
 "aws-sdk@npm:^2.1304.0, aws-sdk@npm:^2.288.0":
-  version: 2.1309.0
-  resolution: "aws-sdk@npm:2.1309.0"
+  version: 2.1310.0
+  resolution: "aws-sdk@npm:2.1310.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -891,7 +891,7 @@ __metadata:
     util: ^0.12.4
     uuid: 8.0.0
     xml2js: 0.4.19
-  checksum: ad24e9629a89ab937395cffe8f43c7fedabdb161578af66bd7378af174a98c1e2dbe0799809fc12ef46959ca3de2c2841ee3527d1eb15081e33d5509afdacdb9
+  checksum: 648141461eaaaac1bcd8a2f1df460bb4603176541a28ed0aa7c344cc9fe19d69b2a463cb975c767bfb913ebc462103474fcd0315d07918c5fa35b0fef5f00f56
   languageName: node
   linkType: hard
 
@@ -2159,7 +2159,7 @@ __metadata:
 
 "hafas-client@github:John98Zakaria/hafas-client":
   version: 6.0.1
-  resolution: "hafas-client@https://github.com/John98Zakaria/hafas-client.git#commit=1112f18c0146d493ad6b724fb7c1a6ded2dfefd7"
+  resolution: "hafas-client@https://github.com/John98Zakaria/hafas-client.git#commit=3ea2adaf9225fe5167ef440bfb1c44e1a2e407ac"
   dependencies:
     "@derhuerst/br2nl": ^1.0.0
     "@derhuerst/round-robin-scheduler": ^1.0.4
@@ -2176,7 +2176,7 @@ __metadata:
     p-throttle: ^5.0.0
     qs: ^6.6.0
     slugg: ^1.2.0
-  checksum: 5cea624d87b6866131c6c574ee285f4e975d6b69d7efc83df352b8d3702cfa0053deb2f3970ee1ea238f36c3958ea5124f5165356c7cfbdf7c4a08bf41995e84
+  checksum: 99194510907721e73e0145902c2183f75a47f996193b8c4e592bcd88c8bb9cbf5f6f73387479fbea09048e8de009105646b0a69b0c4570347f08d9ea7d2c5873
   languageName: node
   linkType: hard
 
@@ -3115,9 +3115,9 @@ __metadata:
   linkType: hard
 
 "minipass@npm:^4.0.0":
-  version: 4.0.1
-  resolution: "minipass@npm:4.0.1"
-  checksum: 48eb3141cc247b44f738944cbd789aedeed9288ebdb64c7de9b3bf23e9e71d611381bfecf643d877d25f7ca9f3d5ab7b6757ef6f46282086812ac5372b7cd291
+  version: 4.0.2
+  resolution: "minipass@npm:4.0.2"
+  checksum: 2e4f4caaf85a45c01c6042adc43b5111a6113f62e300acf1db3b193ac3ec6e955bc893d6d8a08635598771a55a0f60487dcac59a1ac39557eb524295d4778c9e
   languageName: node
   linkType: hard
 
@@ -3948,8 +3948,8 @@ __metadata:
   linkType: hard
 
 "rollup@npm:^3.12.0":
-  version: 3.13.0
-  resolution: "rollup@npm:3.13.0"
+  version: 3.14.0
+  resolution: "rollup@npm:3.14.0"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -3957,7 +3957,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 9de4d705a016942b6c05111cd95fa5e0b12f079edac5691b8ccbddd55bd9e606e7534d66b5e4867d8f6c69b76a5539a43d448f866295777d23d54581361868d1
+  checksum: 48f4da224753b8022529256243b74b3f6f41d9b4358ba079ac42f2a2cf07e4bd01b5d94579338194238e3c575487974ca508e144cf6195123293e7fdf82506cb
   languageName: node
   linkType: hard
 
