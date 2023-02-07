@@ -27,8 +27,9 @@ jobs:
           cache: 'yarn'
 
       - name: Setup Node Dependencies
-        run:
+        run: |
           yarn install --immutable
+          npm install -g nx@latest
       - name: Deploy Lambda
         working-directory: ./apps/alexa-skill
         run: |
