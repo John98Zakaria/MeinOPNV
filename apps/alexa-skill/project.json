@@ -11,7 +11,7 @@
         "commands": [
           "mkdir -p dist",
           "tsc",
-          "cp -r ../../node_modules dist/node_modules",
+          "cp -r node_modules dist/node_modules",
           "cp package.json dist/package.json"
         ],
         "cwd": "apps/alexa-skill",
