@@ -9,6 +9,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
+          "mkdir -p dist",
           "tsc",
           "cp -r ../../node_modules dist/node_modules",
           "cp package.json dist/package.json"

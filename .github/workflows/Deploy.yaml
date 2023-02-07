@@ -33,4 +33,4 @@ jobs:
       - name: Deploy Lambda
         working-directory: ./apps/alexa-skill
         run: |
-          yarn build
+          yarn deploy

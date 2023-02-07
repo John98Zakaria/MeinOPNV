@@ -4,10 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "nx build",
-    "publish": "nx deploy",
-    "preview": "vite preview",
+    "deploy": "nx deploy",
     "bundle": "rollup -c rollup.config.js"
   },
   "devDependencies": {
