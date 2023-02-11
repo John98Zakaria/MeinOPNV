@@ -11,8 +11,11 @@
         "commands": [
           "mkdir -p dist",
           "tsc",
-          "cp -r node_modules dist/node_modules",
-          "cp package.json dist/package.json"
+          "cp prisma/schema.prisma dist/schema.prisma",
+          "cp ../../node_modules/.prisma/client/libquery_engine-rhel-openssl-1.0.x.so.node dist/libquery_engine-rhel-openssl-1.0.x.so.node",
+          "cp package.json dist/package.json",
+          "cp ../../node_modules/hafas-client/p/db/base.json dist/base.json",
+          "rollup -c rollup.config.js"
         ],
         "cwd": "apps/alexa-skill",
         "parallel": false
