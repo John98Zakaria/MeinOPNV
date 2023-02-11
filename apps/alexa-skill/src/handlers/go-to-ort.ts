@@ -1,11 +1,11 @@
-import { canHandleTypesafe, GetNameFromList, isIntentRequest } from '../helpers/type-utiils.js';
-import { profile } from 'hafas-client/p/db/index.js';
+import {canHandleTypesafe, GetNameFromList, isIntentRequest} from '../helpers/type-utiils.js';
+import {profile} from 'hafas-client/p/db/index.js';
 
 
-import { RequestHandler } from 'ask-sdk-core';
-import { getSlotValues } from '../helpers/slot-extractors.js';
-import { deModel } from '../de-model.js';
-import { createClient } from 'hafas-client';
+import {RequestHandler} from 'ask-sdk-core';
+import {getSlotValues} from '../helpers/slot-extractors.js';
+import {deModel} from '../de-model.js';
+import {createClient} from 'hafas-client';
 
 export const bahnClient = createClient(profile, 'aws-lambda-bahn');
 
@@ -15,8 +15,7 @@ type AddStationSlot = GetNameFromList<AddStationIntentType['slots']>
 
 export const GoToOrt_Handler: RequestHandler = {
     canHandle(handlerInput) {
-        const request = handlerInput.requestEnvelope.request;
-        return request.type === 'IntentRequest' && canHandleTypesafe(handlerInput, 'GoToOrt');
+        return canHandleTypesafe(handlerInput, 'GoToOrt');
     },
     async handle(handlerInput) {
         const request = handlerInput.requestEnvelope.request;
@@ -46,7 +45,7 @@ export const GoToOrt_Handler: RequestHandler = {
             const kurmainKaserne = '000405243';
             const mainzGonsenheim = '008000068';
 
-            const journey = await bahnClient.journeys(kurmainKaserne, mainzGonsenheim, { results: 2 });
+            const journey = await bahnClient.journeys(kurmainKaserne, mainzGonsenheim, {results: 2});
             const legs = journey.journeys?.at(0)?.legs ?? [];
             let firstLeg = journey.journeys?.at(0)?.legs[0];
             let lastLeg = journey.journeys?.at(0)?.legs[legs.length - 1];

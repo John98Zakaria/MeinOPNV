@@ -1,4 +1,4 @@
-import { Intent } from 'ask-sdk-model';
+import {Intent} from 'ask-sdk-model';
 
 type SlotUnderstood = {
     heardAs: string | undefined,

@@ -24,7 +24,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: dist
-      Handler: src/index.handler
+      Handler: index.handler
       Runtime: nodejs18.x
       Architectures:
         - x86_64

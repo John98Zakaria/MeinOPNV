@@ -20,8 +20,8 @@
     },
     "exclude": [
         "node_modules",
-        "dist",
-        "test",
+        "./dist",
+        "./test",
         "**/*spec.ts"
     ]
 }

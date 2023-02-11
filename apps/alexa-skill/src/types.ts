@@ -1,5 +1,5 @@
-import { GetNameFromList, StripPrefix } from './helpers/type-utiils.js';
-import { deModel } from './de-model.js';
+import {GetNameFromList, StripPrefix} from './helpers/type-utiils.js';
+import {deModel} from './de-model.js';
 
 
 export type AmazonPrefixIntents =

@@ -13,8 +13,9 @@ import {
     LaunchRequestHandler,
     SessionEndedRequestHandler
 } from './handlers/default-handlers.js';
-import { GoToOrt_Handler } from './handlers/go-to-ort.js';
-import { AddStationHandler } from './handlers/add-station.js';
+import {GoToOrt_Handler} from './handlers/go-to-ort.js';
+import {AddStationHandler} from './handlers/add-station.js';
+import {SentryInterceptor} from "./sentry.js";
 
 
 /**
@@ -22,18 +23,30 @@ import { AddStationHandler } from './handlers/add-station.js';
  * payloads to the handlers above. Make sure any new handlers or interceptors you've
  * defined are included below. The order matters - they're processed top to bottom
  * */
+import * as SentryAWS from '@sentry/serverless'
+import {sentrySettings} from "./sentry-settings.js";
+import {RequestEnvelope} from "ask-sdk-model";
 
-export const handler = Alexa.SkillBuilders.custom()
-    .addRequestHandlers(
-        LaunchRequestHandler,
-        HelpIntentHandler,
-        CancelAndStopIntentHandler,
-        FallbackIntentHandler,
-        GoToOrt_Handler,
-        SessionEndedRequestHandler,
-        AddStationHandler,
-        IntentReflectorHandler)
-    .addErrorHandlers(
-        ErrorHandler_)
-    .withCustomUserAgent('Alexa-Wegweiser')
-    .lambda();
+SentryAWS.AWSLambda.init(sentrySettings);
+
+
+export const skill =
+    Alexa.SkillBuilders.custom()
+        .addRequestHandlers(
+            LaunchRequestHandler,
+            HelpIntentHandler,
+            CancelAndStopIntentHandler,
+            FallbackIntentHandler,
+            GoToOrt_Handler,
+            SessionEndedRequestHandler,
+            AddStationHandler,
+            IntentReflectorHandler)
+        .addErrorHandlers(
+            ErrorHandler_).addRequestInterceptors(new SentryInterceptor())
+        .withCustomUserAgent('Alexa-Wegweiser')
+        .create();
+
+export const handler = SentryAWS.AWSLambda.wrapHandler(async (requestData: RequestEnvelope, context) => {
+    // await SentryAWS.flush();
+    return await skill.invoke(requestData, context)
+});

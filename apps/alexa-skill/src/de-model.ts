@@ -2,15 +2,15 @@ export const deModel = {
     'interactionModel': {
         'languageModel': {
             'invocationName': 'fahr mich',
-            'intents': [{ 'name': 'AMAZON.CancelIntent', 'samples': [] }, {
+            'intents': [{'name': 'AMAZON.CancelIntent', 'samples': []}, {
                 'name': 'AMAZON.HelpIntent',
                 'samples': []
-            }, { 'name': 'AMAZON.StopIntent', 'samples': [] }, {
+            }, {'name': 'AMAZON.StopIntent', 'samples': []}, {
                 'name': 'AMAZON.NavigateHomeIntent',
                 'samples': []
-            }, { 'name': 'AMAZON.FallbackIntent', 'samples': [] }, {
+            }, {'name': 'AMAZON.FallbackIntent', 'samples': []}, {
                 'name': 'GoToOrt',
-                'slots': [{ 'name': 'ort', 'type': 'BekannteOrte' }],
+                'slots': [{'name': 'ort', 'type': 'BekannteOrte'}],
                 'samples': ['zum {ort}', 'zu {ort}', 'nach {ort}', 'zur {ort}']
             }, {
                 'name': 'AddStationIntent',
@@ -24,11 +24,11 @@ export const deModel = {
                         'type': 'BekannteOrte',
                         'samples': ['{bekannterOrt}', 'Der ort soll {bekannterOrt} heisen.']
                     },
-                    { 'name': 'ListChoice', 'type': 'AMAZON.NUMBER' }],
+                    {'name': 'ListChoice', 'type': 'AMAZON.NUMBER'}],
                 'samples': ['Speichere {adresse} als {bekannterOrt}', 'Merke dir einen Neunen Ort', 'Speichere einen Neuen Ort']
             }],
             'types': [{
-                'values': [{ 'name': { 'value': 'Arbeit', 'synonyms': ['job'] } }, {
+                'values': [{'name': {'value': 'Arbeit', 'synonyms': ['job']}}, {
                     'name': {
                         'value': 'Uni',
                         'synonyms': ['Universität']
@@ -46,7 +46,7 @@ export const deModel = {
                     'type': 'AMAZON.StreetName',
                     'elicitationRequired': true,
                     'confirmationRequired': false,
-                    'prompts': { 'elicitation': 'Elicit.Slot.206116147410.483422192679' }
+                    'prompts': {'elicitation': 'Elicit.Slot.206116147410.483422192679'}
                 }, {
                     'name': 'bekannterOrt',
                     'type': 'BekannteOrte',
@@ -87,19 +87,19 @@ export const deModel = {
         },
         'prompts': [{
             'id': 'Elicit.Slot.206116147410.876656949550',
-            'variations': [{ 'type': 'PlainText', 'value': 'Wie soll der Ort heißen?' }]
+            'variations': [{'type': 'PlainText', 'value': 'Wie soll der Ort heißen?'}]
         }, {
             'id': 'Confirm.Slot.206116147410.876656949550',
-            'variations': [{ 'type': 'PlainText', 'value': 'Habe ich {bekannterOrt} richtig verstanden?' }]
+            'variations': [{'type': 'PlainText', 'value': 'Habe ich {bekannterOrt} richtig verstanden?'}]
         }, {
             'id': 'Elicit.Slot.206116147410.483422192679',
-            'variations': [{ 'type': 'PlainText', 'value': 'Wie lautet die adresse ?' }]
+            'variations': [{'type': 'PlainText', 'value': 'Wie lautet die adresse ?'}]
         }, {
             'id': 'Slot.Validation.206116147410.199805348541.87145184706',
-            'variations': [{ 'type': 'PlainText', 'value': 'Die Zahl muss grosser als null sein.' }]
+            'variations': [{'type': 'PlainText', 'value': 'Die Zahl muss grosser als null sein.'}]
         }, {
             'id': 'Slot.Validation.206116147410.199805348541.1110212648416',
-            'variations': [{ 'type': 'PlainText', 'value': 'Die Zahl muss kleiner als sechs sein.' }]
+            'variations': [{'type': 'PlainText', 'value': 'Die Zahl muss kleiner als sechs sein.'}]
         }]
     }, 'version': '10'
 } as const;

@@ -1,10 +1,10 @@
 import * as Alexa from 'ask-sdk-core';
-import { ErrorHandler, RequestHandler } from 'ask-sdk-core';
-import { canHandleTypesafe } from '../helpers/type-utiils.js';
+import {ErrorHandler, RequestHandler} from 'ask-sdk-core';
+import * as Sentry from '@sentry/serverless'
 
 export const LaunchRequestHandler: RequestHandler = {
     canHandle(handlerInput) {
-        return canHandleTypesafe(handlerInput, 'LaunchRequest');
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     async handle(handlerInput) {
         const speakOutput = 'Welcome, you can say Zur Arbeit';
@@ -18,8 +18,7 @@ export const LaunchRequestHandler: RequestHandler = {
 };
 export const HelpIntentHandler: RequestHandler = {
     canHandle(handlerInput) {
-        return canHandleTypesafe(handlerInput, 'IntentRequest')
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
+        return Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
         const speakOutput = 'You can say hello to me! How can I help?';
@@ -32,9 +31,8 @@ export const HelpIntentHandler: RequestHandler = {
 };
 export const CancelAndStopIntentHandler: RequestHandler = {
     canHandle(handlerInput) {
-        return canHandleTypesafe(handlerInput, 'IntentRequest')
-            && (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.CancelIntent'
-                || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
+        return (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.CancelIntent'
+            || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
         const speakOutput = 'Goodbye!';
@@ -51,8 +49,7 @@ export const CancelAndStopIntentHandler: RequestHandler = {
  * */
 export const FallbackIntentHandler: RequestHandler = {
     canHandle(handlerInput) {
-        return canHandleTypesafe(handlerInput, 'IntentRequest')
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
+        return Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
         const speakOutput = 'Sorry, I don\'t know about that. Please try again.';
@@ -70,7 +67,7 @@ export const FallbackIntentHandler: RequestHandler = {
  * */
 export const SessionEndedRequestHandler: RequestHandler = {
     canHandle(handlerInput) {
-        return canHandleTypesafe(handlerInput, 'SessionEndedRequest');
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest'
     },
     handle(handlerInput) {
         console.log(`~~~~ Session ended: ${JSON.stringify(handlerInput.requestEnvelope)}`);
@@ -86,7 +83,7 @@ export const SessionEndedRequestHandler: RequestHandler = {
  * */
 export const IntentReflectorHandler: RequestHandler = {
     canHandle(handlerInput) {
-        return canHandleTypesafe(handlerInput, 'IntentRequest');
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
     },
     handle(handlerInput) {
         const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
@@ -108,10 +105,14 @@ export const ErrorHandler_: ErrorHandler = {
     canHandle() {
         return true;
     },
-    handle(handlerInput, error) {
+    async handle(handlerInput, error) {
         const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
-        console.error(JSON.stringify(handlerInput));
+        Sentry.captureException(error);
+        console.error(JSON.stringify(handlerInput))
+        console.error(error)
         console.error(`~~~~ Error handled: ${JSON.stringify(error)}`);
+        const flushed = await Sentry.flush(1)
+        console.log(`flush=${flushed}`)
 
         return handlerInput.responseBuilder
             .speak(speakOutput)

@@ -1,7 +1,7 @@
-import { IntentRequest, Request } from 'ask-sdk-model';
+import {IntentRequest, Request} from 'ask-sdk-model';
 import * as Alexa from 'ask-sdk-core';
-import { HandlerInput } from 'ask-sdk-core';
-import { BahnSkillIntent } from '../types.js';
+import {HandlerInput} from 'ask-sdk-core';
+import {BahnSkillIntent} from '../types.js';
 
 export type GetNameFromList<T extends readonly { name: string }[]> = T[number]['name'];
 export type StripPrefix<
@@ -14,5 +14,5 @@ export function isIntentRequest(request: Request): request is IntentRequest {
 }
 
 export function canHandleTypesafe(handlerInput: HandlerInput, expectedIntent: BahnSkillIntent) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === expectedIntent;
+    return Alexa.getIntentName(handlerInput.requestEnvelope) === expectedIntent;
 }
