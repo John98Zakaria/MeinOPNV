@@ -34,3 +34,5 @@ jobs:
         working-directory: ./apps/alexa-skill
         run: |
           yarn deploy
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
