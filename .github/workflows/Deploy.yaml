@@ -30,7 +30,12 @@ jobs:
         run: |
           yarn install --immutable
           npm install -g nx@latest
-          prisma generate
+      - name: Generate Prisma Client
+        working-directory: ./apps/alexa-skill
+        run: |
+          yarn prisma generate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: Deploy Lambda
         working-directory: ./apps/alexa-skill
         run: |
