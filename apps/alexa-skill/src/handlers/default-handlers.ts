@@ -1,6 +1,9 @@
 import * as Alexa from 'ask-sdk-core';
-import {ErrorHandler, RequestHandler} from 'ask-sdk-core';
-import * as Sentry from '@sentry/serverless'
+import { type ErrorHandler, type HandlerInput, type RequestHandler } from 'ask-sdk-core';
+import * as Sentry from '@sentry/serverless';
+import { isExpectedIntent } from '../helpers/type-utiils.js';
+import { IntentHandler } from '../core/handler-base.js';
+import { type BahnSkillIntent } from '../core/types.js';
 
 export const LaunchRequestHandler: RequestHandler = {
     canHandle(handlerInput) {
@@ -14,13 +17,14 @@ export const LaunchRequestHandler: RequestHandler = {
             .speak(speakOutput)
             .reprompt(speakOutput)
             .getResponse();
-    }
-};
-export const HelpIntentHandler: RequestHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
-    handle(handlerInput) {
+};
+
+export class HelpIntentHandler extends IntentHandler {
+    myIntentName: BahnSkillIntent = 'AMAZON.HelpIntent' as const;
+
+
+    doHandle(handlerInput: HandlerInput) {
         const speakOutput = 'You can say hello to me! How can I help?';
 
         return handlerInput.responseBuilder
@@ -28,38 +32,49 @@ export const HelpIntentHandler: RequestHandler = {
             .reprompt(speakOutput)
             .getResponse();
     }
-};
-export const CancelAndStopIntentHandler: RequestHandler = {
-    canHandle(handlerInput) {
-        return (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.CancelIntent'
-            || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
-    },
-    handle(handlerInput) {
+
+}
+
+export class CancelAndStopIntentHandler extends IntentHandler {
+
+    myIntentName: BahnSkillIntent = 'AMAZON.StopIntent';
+
+    canHandle(handlerInput: HandlerInput) {
+        return isExpectedIntent(handlerInput, 'AMAZON.CancelIntent')
+            || isExpectedIntent(handlerInput, 'AMAZON.StopIntent');
+    }
+
+
+    doHandle(handlerInput: HandlerInput) {
         const speakOutput = 'Goodbye!';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();
     }
-};
+
+
+}
+
 /* *
  * FallbackIntent triggers when a customer says something that doesn’t map to any intents in your skill
  * It must also be defined in the language model (if the locale supports it)
  * This handler can be safely added but will be ingnored in locales that do not support it yet
  * */
-export const FallbackIntentHandler: RequestHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
-    },
-    handle(handlerInput) {
-        const speakOutput = 'Sorry, I don\'t know about that. Please try again.';
+export class FallbackIntentHandler extends IntentHandler {
+    myIntentName: BahnSkillIntent = 'AMAZON.FallbackIntent';
+
+    doHandle(handlerInput: HandlerInput) {
+        const speakOutput = 'Leider habe ich dich nicht verstanden, versuche es nochmal';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
             .getResponse();
     }
-};
+
+}
+
 /* *
  * SessionEndedRequest notifies that a session was ended. This handler will be triggered when a currently open
  * session is closed for one of the following reasons: 1) The user says "exit" or "quit". 2) The user does not
@@ -67,13 +82,12 @@ export const FallbackIntentHandler: RequestHandler = {
  * */
 export const SessionEndedRequestHandler: RequestHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest'
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
     },
     handle(handlerInput) {
-        console.log(`~~~~ Session ended: ${JSON.stringify(handlerInput.requestEnvelope)}`);
         // Any cleanup logic goes here.
         return handlerInput.responseBuilder.getResponse(); // notice we send an empty response
-    }
+    },
 };
 
 /* *
@@ -82,18 +96,17 @@ export const SessionEndedRequestHandler: RequestHandler = {
  * by defining them above, then also adding them to the request handler chain below
  * */
 export const IntentReflectorHandler: RequestHandler = {
-    canHandle(handlerInput) {
+    canHandle(handlerInput: HandlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
     },
-    handle(handlerInput) {
+    handle(handlerInput: HandlerInput) {
         const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
         const speakOutput = `You just triggered ${intentName}`;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
-    }
+    },
 };
 
 /**
@@ -107,16 +120,14 @@ export const ErrorHandler_: ErrorHandler = {
     },
     async handle(handlerInput, error) {
         const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
-        Sentry.captureException(error);
-        console.error(JSON.stringify(handlerInput))
-        console.error(error)
-        console.error(`~~~~ Error handled: ${JSON.stringify(error)}`);
-        const flushed = await Sentry.flush(1)
-        console.log(`flush=${flushed}`)
+        Sentry.withScope(scope => {
+            Sentry.captureException(error, scope);
+            Sentry.setContext('Handler Data', handlerInput);
+        });
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
             .getResponse();
-    }
+    },
 };

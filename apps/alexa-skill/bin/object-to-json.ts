@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import {parseFilePath} from './common.js';
+import { parseFilePath } from './common.js';
 
 const exportName = process.argv[2];
 const inputFilePath = process.argv[3];

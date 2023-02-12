@@ -3,9 +3,16 @@
   "compilerOptions": {
     "outDir": "./dist",
     "incremental": true,
+    "strictNullChecks": true,
     "inlineSources": true,
     "sourceMap": true
   },
-  "include": ["./src/**/*.ts","./bin/**/*.ts"],
-  "exclude": ["./dist", "**/node_modules/**"]
+  "include": [
+    "./src/**/*.ts",
+    "./bin/**/*.ts"
+  ],
+  "exclude": [
+    "./dist",
+    "**/node_modules/**"
+  ]
 }

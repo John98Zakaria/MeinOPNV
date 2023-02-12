@@ -58,7 +58,7 @@
               ]
             },
             {
-              "name": "ListChoice",
+              "name": "listChoice",
               "type": "AMAZON.NUMBER"
             }
           ],
@@ -120,7 +120,7 @@
               }
             },
             {
-              "name": "ListChoice",
+              "name": "listChoice",
               "type": "AMAZON.NUMBER",
               "elicitationRequired": false,
               "confirmationRequired": false,
@@ -205,5 +205,5 @@
       }
     ]
   },
-  "version": "10"
+  "version": "11"
 }

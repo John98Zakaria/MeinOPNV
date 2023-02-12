@@ -1,6 +1,6 @@
-import {Intent} from 'ask-sdk-model';
+import { type Intent } from 'ask-sdk-model';
 
-type SlotUnderstood = {
+interface SlotUnderstood {
     heardAs: string | undefined,
     resolved: string,
     ERstatus: 'ER_SUCCESS_MATCH' | 'ER_SUCCESS_NO_MATCH' | 'ER_ERROR'
@@ -8,37 +8,29 @@ type SlotUnderstood = {
 }
 
 export function getSlotValues<T>(filledSlots: Intent['slots']): Map<T | number, SlotUnderstood> {
-    const slotValues: Map<T, SlotUnderstood> = new Map();
+    const slotValues = new Map<T, SlotUnderstood>();
     if (filledSlots === undefined) {
         return new Map();
     }
 
     Object.keys(filledSlots).forEach((item: keyof typeof filledSlots) => {
-        let slotItem = filledSlots[item];
-        if (!slotItem) {
-            throw Error('Null Error');
-        }
+        const slotItem = filledSlots[item];
         const name = slotItem.name;
 
-        if (slotItem &&
-            slotItem.resolutions &&
-            slotItem.resolutions.resolutionsPerAuthority &&
-            slotItem.resolutions.resolutionsPerAuthority[0] &&
-            slotItem.resolutions.resolutionsPerAuthority[0].status &&
-            slotItem.resolutions.resolutionsPerAuthority[0].status.code) {
+        if (slotItem?.resolutions?.resolutionsPerAuthority?.[0]?.status?.code !== undefined) {
             switch (slotItem.resolutions.resolutionsPerAuthority[0].status.code) {
                 case 'ER_SUCCESS_MATCH':
                     slotValues.set(name as T, {
                         heardAs: slotItem.value,
                         resolved: slotItem.resolutions.resolutionsPerAuthority[0].values[0]?.value.name ?? 'Error',
-                        ERstatus: 'ER_SUCCESS_MATCH'
+                        ERstatus: 'ER_SUCCESS_MATCH',
                     });
                     break;
                 case 'ER_SUCCESS_NO_MATCH':
                     slotValues.set(name as T, {
                         heardAs: slotItem.value,
                         resolved: '',
-                        ERstatus: 'ER_SUCCESS_NO_MATCH'
+                        ERstatus: 'ER_SUCCESS_NO_MATCH',
                     });
                     break;
                 default:
@@ -48,7 +40,7 @@ export function getSlotValues<T>(filledSlots: Intent['slots']): Map<T | number, 
             slotValues.set(name as T, {
                 heardAs: slotItem.value,
                 resolved: '',
-                ERstatus: 'ER_ERROR'
+                ERstatus: 'ER_ERROR',
             });
         }
     });
