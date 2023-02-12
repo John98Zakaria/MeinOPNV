@@ -12,6 +12,7 @@ import { GoToOrtHandler } from './handlers/go-to-ort.js';
 import { AddStationHandler } from './handlers/add-station.js';
 import * as SentryAWS from '@sentry/serverless';
 import { sentrySettings } from './sentry-settings.js';
+import { RequestEnvelope } from 'ask-sdk-model';
 
 SentryAWS.AWSLambda.init(sentrySettings);
 
@@ -32,4 +33,6 @@ export const skill =
         .withCustomUserAgent('Alexa-Wegweiser')
         .create();
 
-export const handler = SentryAWS.AWSLambda.wrapHandler(skill.invoke);
+export const handler = SentryAWS.AWSLambda.wrapHandler(async (requestData: RequestEnvelope, context) => {
+    return await skill.invoke(requestData, context);
+});
