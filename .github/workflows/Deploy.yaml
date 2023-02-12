@@ -26,10 +26,11 @@ jobs:
           node-version: 18
           cache: 'yarn'
 
-      - name: Setup Node Dependencies
+      - name: Setup Dependencies
         run: |
           yarn install --immutable
           npm install -g nx@latest
+          prisma generate
       - name: Deploy Lambda
         working-directory: ./apps/alexa-skill
         run: |
