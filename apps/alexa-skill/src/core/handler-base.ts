@@ -13,11 +13,14 @@ export abstract class IntentHandler implements RequestHandler {
     }
 
     handle(input: HandlerInput): Promise<Response> | Response {
-        const transaction = SentryAWS.startTransaction({
-            name: this.myIntentName,
-        });
+        const parentTransaction = SentryAWS.getCurrentHub().getScope()?.getTransaction();
+        if (parentTransaction === undefined) {
+            console.warn('Was not able to find senty parent transaction');
+            return this.doHandle(input);
+        }
+        const childTransaction = parentTransaction.startChild({ op: this.myIntentName });
         const response = this.doHandle(input);
-        transaction.finish();
+        childTransaction.finish();
         return response;
     }
 
