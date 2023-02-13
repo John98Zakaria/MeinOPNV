@@ -73,7 +73,7 @@ export class AddStationHandlerSearchLocation extends IntentHandler {
         handlerInput.attributesManager.setSessionAttributes(sessionAttribs);
 
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        return responseBuilder.speak(choices.join(',')).addElicitSlotDirective('listChoice').getResponse();
+        return responseBuilder.speak(choices.map(item => item.name).join(',')).addElicitSlotDirective('listChoice').getResponse();
     }
 
 
