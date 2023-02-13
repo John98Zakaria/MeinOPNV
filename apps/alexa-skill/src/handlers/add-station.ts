@@ -5,6 +5,7 @@ import { getSlotValues } from '../helpers/slot-extractors.js';
 import { type deModel } from '../de-model.js';
 import { type AlexaIntent } from '../core/types.js';
 import { bahnClient } from '../external-clients.js';
+import { Station } from 'hafas-client';
 
 const AddStationIntent = { name: 'AddStationIntent' } satisfies AlexaIntent;
 type AddStationIntentType = (typeof deModel.interactionModel.languageModel.intents[number] & typeof AddStationIntent)
@@ -67,9 +68,52 @@ export class AddStationHandlerSearchLocation extends IntentHandler {
 
         const choices = await bahnClient.locations(adresse.heardAs as string, { results: 5 });
 
+        const sessionAttribs = handlerInput.attributesManager.getSessionAttributes();
+        sessionAttribs.bahn = choices;
+        handlerInput.attributesManager.setSessionAttributes(sessionAttribs);
 
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         return responseBuilder.speak(choices.join(',')).addElicitSlotDirective('listChoice').getResponse();
+    }
+
+
+}
+
+export class AddStationHandlerStore extends IntentHandler {
+    myIntentName = 'AddStationIntent' as const;
+
+
+    canHandle(handlerInput: HandlerInput) {
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        return isExpectedIntent(handlerInput, 'AddStationIntent') && handlerInput.requestEnvelope.request.intent.slots.listChoice.value !== '0';
+    }
+
+    async doHandle(handlerInput: HandlerInput) {
+        const request = handlerInput.requestEnvelope.request;
+        const responseBuilder = handlerInput.responseBuilder;
+        if (!isIntentRequest(request)) {
+            return responseBuilder.speak('SHIT').getResponse();
+        }
+
+        const slots = getSlotValues<AddStationSlot>(request.intent.slots);
+
+        const ort = mapGet(slots, 'bekannterOrt');
+        const adresse = mapGet(slots, 'adresse');
+        const listChoice = slots.get('listChoice');
+
+        console.log(ort, adresse, listChoice);
+
+
+        const sessionAttribs = handlerInput.attributesManager.getSessionAttributes();
+        const bahnMoglichkeiten: Station[] = sessionAttribs.bahn;
+        console.log(bahnMoglichkeiten);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        const finalStation: Station | undefined = bahnMoglichkeiten[parseInt(listChoice.heardAs, 10)];
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        return responseBuilder.speak(finalStation.name ?? 'unknown').getResponse();
     }
 
 

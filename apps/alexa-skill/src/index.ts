@@ -9,7 +9,11 @@ import {
     SessionEndedRequestHandler,
 } from './handlers/default-handlers.js';
 import { GoToOrtHandler } from './handlers/go-to-ort.js';
-import { AddStationHandlerSearchLocation, AddStationHandlerStart } from './handlers/add-station.js';
+import {
+    AddStationHandlerSearchLocation,
+    AddStationHandlerStart,
+    AddStationHandlerStore,
+} from './handlers/add-station.js';
 import * as SentryAWS from '@sentry/serverless';
 import { sentrySettings } from './sentry-settings.js';
 import { type RequestEnvelope } from 'ask-sdk-model';
@@ -28,6 +32,7 @@ export const skill =
             SessionEndedRequestHandler,
             new AddStationHandlerStart(),
             new AddStationHandlerSearchLocation(),
+            new AddStationHandlerStore(),
             IntentReflectorHandler)
         .addErrorHandlers(
             ErrorHandler_)
