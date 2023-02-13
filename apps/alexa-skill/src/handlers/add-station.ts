@@ -29,12 +29,9 @@ export class AddStationHandlerStart extends IntentHandler {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         handlerInput.requestEnvelope.request.intent.slots.listChoice.value = '10';
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        handlerInput.requestEnvelope.request.intent.slots.listChoice.slotValue = { type: 'Simple', value: '10' };
         return handlerInput
             .responseBuilder
-            .addDelegateDirective()
+            .addDelegateDirective(handlerInput.requestEnvelope.request.intent)
             .getResponse();
     }
 }
