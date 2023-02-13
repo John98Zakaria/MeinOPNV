@@ -28,7 +28,10 @@ export class AddStationHandlerStart extends IntentHandler {
         console.log(handlerInput.requestEnvelope.request.intent);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        handlerInput.requestEnvelope.request.intent.slots.listChoice.value = 10;
+        handlerInput.requestEnvelope.request.intent.slots.listChoice.value = '10';
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        handlerInput.requestEnvelope.request.intent.slots.listChoice.slotValue = { type: 'Simple', value: '10' };
         return handlerInput
             .responseBuilder
             .addDelegateDirective()
