@@ -18,7 +18,10 @@ export abstract class IntentHandler implements RequestHandler {
             console.warn('Was not able to find senty parent transaction');
             return this.doHandle(input);
         }
-        const childTransaction = parentTransaction.startChild({ op: this.myIntentName });
+        const childTransaction = parentTransaction.startChild({
+            op: this.myIntentName,
+            description: this.myIntentName,
+        });
         const response = this.doHandle(input);
         childTransaction.finish();
         return response;

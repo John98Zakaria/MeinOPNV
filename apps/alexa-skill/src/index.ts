@@ -9,10 +9,10 @@ import {
     SessionEndedRequestHandler,
 } from './handlers/default-handlers.js';
 import { GoToOrtHandler } from './handlers/go-to-ort.js';
-import { AddStationHandler } from './handlers/add-station.js';
+import { AddStationHandlerSearchLocation, AddStationHandlerStart } from './handlers/add-station.js';
 import * as SentryAWS from '@sentry/serverless';
 import { sentrySettings } from './sentry-settings.js';
-import { RequestEnvelope } from 'ask-sdk-model';
+import { type RequestEnvelope } from 'ask-sdk-model';
 
 SentryAWS.AWSLambda.init(sentrySettings);
 
@@ -26,7 +26,8 @@ export const skill =
             new FallbackIntentHandler(),
             new GoToOrtHandler(),
             SessionEndedRequestHandler,
-            new AddStationHandler(),
+            new AddStationHandlerStart(),
+            new AddStationHandlerSearchLocation(),
             IntentReflectorHandler)
         .addErrorHandlers(
             ErrorHandler_)
