@@ -19,7 +19,7 @@ export class AddStationHandlerStart extends IntentHandler {
     canHandle(handlerInput: HandlerInput) {
         return isExpectedIntent(handlerInput, 'AddStationIntent')
         && 'dialogState' in handlerInput.requestEnvelope.request ?
-            handlerInput.requestEnvelope.request.dialogState !== 'COMPLETED' : false;
+            handlerInput.requestEnvelope.request.dialogState === 'STARTED' : false;
     }
 
     async doHandle(handlerInput: HandlerInput) {
@@ -27,13 +27,9 @@ export class AddStationHandlerStart extends IntentHandler {
             throw Error('NotIntentRequest');
         }
 
-        console.log(handlerInput.requestEnvelope.request.intent);
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        handlerInput.requestEnvelope.request.intent.slots.listChoice.value = '0';
         return handlerInput
             .responseBuilder
-            .addDelegateDirective(handlerInput.requestEnvelope.request.intent)
+            .addDelegateDirective()
             .getResponse();
     }
 }
@@ -44,10 +40,9 @@ export class AddStationHandlerSearchLocation extends IntentHandler {
 
 
     canHandle(handlerInput: HandlerInput) {
-
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        return isExpectedIntent(handlerInput, 'AddStationIntent') && handlerInput.requestEnvelope.request.intent.slots.listChoice.value === '0';
+        return isExpectedIntent(handlerInput, 'AddStationIntent')
+        && 'dialogState' in handlerInput.requestEnvelope.request ?
+            handlerInput.requestEnvelope.request.dialogState === 'IN_PROGRESS' : false;
     }
 
     async doHandle(handlerInput: HandlerInput) {
@@ -84,10 +79,9 @@ export class AddStationHandlerStore extends IntentHandler {
 
 
     canHandle(handlerInput: HandlerInput) {
+        return isExpectedIntent(handlerInput, 'AddStationIntent') && 'dialogState' in handlerInput.requestEnvelope.request ?
+            handlerInput.requestEnvelope.request.dialogState === 'COMPLETED' : false;
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        return isExpectedIntent(handlerInput, 'AddStationIntent') && handlerInput.requestEnvelope.request.intent.slots.listChoice.value !== '0';
     }
 
     async doHandle(handlerInput: HandlerInput) {
