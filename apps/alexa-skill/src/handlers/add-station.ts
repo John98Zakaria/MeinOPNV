@@ -21,10 +21,14 @@ export class AddStationHandlerStart extends IntentHandler {
     }
 
     async doHandle(handlerInput: HandlerInput) {
+        if (!isIntentRequest(handlerInput.requestEnvelope.request)) {
+            throw Error('NotIntentRequest');
+        }
+
+        console.log(handlerInput.requestEnvelope.request.intent);
         return handlerInput
             .responseBuilder
-            .addElicitSlotDirective('adresse')
-            .addElicitSlotDirective('bekannterOrt')
+            .addDelegateDirective()
             .getResponse();
     }
 }
