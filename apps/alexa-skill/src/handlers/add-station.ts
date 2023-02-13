@@ -1,9 +1,10 @@
-import { type GetNameFromList, isExpectedIntent, isIntentRequest } from '../helpers/type-utiils.js';
+import { type GetNameFromList, isExpectedIntent, isIntentRequest, mapGet } from '../helpers/type-utiils.js';
 import { IntentHandler } from '../core/handler-base.js';
 import { type HandlerInput } from 'ask-sdk-core';
 import { getSlotValues } from '../helpers/slot-extractors.js';
 import { type deModel } from '../de-model.js';
 import { type AlexaIntent } from '../core/types.js';
+import { bahnClient } from '../external-clients.js';
 
 const AddStationIntent = { name: 'AddStationIntent' } satisfies AlexaIntent;
 type AddStationIntentType = (typeof deModel.interactionModel.languageModel.intents[number] & typeof AddStationIntent)
@@ -28,7 +29,7 @@ export class AddStationHandlerStart extends IntentHandler {
         console.log(handlerInput.requestEnvelope.request.intent);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        handlerInput.requestEnvelope.request.intent.slots.listChoice.value = '10';
+        handlerInput.requestEnvelope.request.intent.slots.listChoice.value = '0';
         return handlerInput
             .responseBuilder
             .addDelegateDirective(handlerInput.requestEnvelope.request.intent)
@@ -42,7 +43,10 @@ export class AddStationHandlerSearchLocation extends IntentHandler {
 
 
     canHandle(handlerInput: HandlerInput) {
-        return isExpectedIntent(handlerInput, 'AddStationIntent');
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        return isExpectedIntent(handlerInput, 'AddStationIntent') && handlerInput.requestEnvelope.request.intent.slots.listChoice.value === '0';
     }
 
     async doHandle(handlerInput: HandlerInput) {
@@ -55,15 +59,17 @@ export class AddStationHandlerSearchLocation extends IntentHandler {
 
         const slots = getSlotValues<AddStationSlot>(request.intent.slots);
 
-        const ort = slots.get('bekannterOrt');
-        const adresse = slots.get('bekannterOrt');
+        const ort = mapGet(slots, 'bekannterOrt');
+        const adresse = mapGet(slots, 'adresse');
         const listChoice = slots.get('listChoice');
 
         console.log(ort, adresse, listChoice);
 
+        const choices = await bahnClient.locations(adresse.heardAs as string, { results: 5 });
+
 
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        return responseBuilder.speak(`ort ${ort?.heardAs} adresse ${adresse?.heardAs} listChoice ${listChoice?.heardAs} `).getResponse();
+        return responseBuilder.speak(choices.join(',')).addElicitSlotDirective('listChoice').getResponse();
     }
 
 
