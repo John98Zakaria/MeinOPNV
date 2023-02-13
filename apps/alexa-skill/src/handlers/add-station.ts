@@ -21,7 +21,11 @@ export class AddStationHandlerStart extends IntentHandler {
     }
 
     async doHandle(handlerInput: HandlerInput) {
-        return handlerInput.responseBuilder.addDelegateDirective().getResponse();
+        return handlerInput
+            .responseBuilder
+            .addElicitSlotDirective('adresse')
+            .addElicitSlotDirective('bekannterOrt')
+            .getResponse();
     }
 }
 
