@@ -5,7 +5,7 @@ import { getSlotValues } from '../helpers/slot-extractors.js';
 import { type deModel } from '../de-model.js';
 import { type AlexaIntent } from '../core/types.js';
 import { bahnClient } from '../external-clients.js';
-import { Station } from 'hafas-client';
+import { type Station } from 'hafas-client';
 
 const AddStationIntent = { name: 'AddStationIntent' } satisfies AlexaIntent;
 type AddStationIntentType = (typeof deModel.interactionModel.languageModel.intents[number] & typeof AddStationIntent)
@@ -40,9 +40,14 @@ export class AddStationHandlerSearchLocation extends IntentHandler {
 
 
     canHandle(handlerInput: HandlerInput) {
+        const request = handlerInput.requestEnvelope.request;
+        if (!isIntentRequest(request)) {
+            return false;
+        }
         return isExpectedIntent(handlerInput, 'AddStationIntent')
-        && 'dialogState' in handlerInput.requestEnvelope.request ?
-            handlerInput.requestEnvelope.request.dialogState === 'IN_PROGRESS' : false;
+            && request.dialogState === 'IN_PROGRESS'
+            // User didn't choose yet
+            && request.intent.slots?.listChoice.value === undefined;
     }
 
     async doHandle(handlerInput: HandlerInput) {
@@ -62,10 +67,10 @@ export class AddStationHandlerSearchLocation extends IntentHandler {
         console.log(ort, adresse, listChoice);
 
         const choices = await bahnClient.locations(adresse.heardAs as string, { results: 5 });
-
         const sessionAttribs = handlerInput.attributesManager.getSessionAttributes();
         sessionAttribs.bahn = choices;
         handlerInput.attributesManager.setSessionAttributes(sessionAttribs);
+
 
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         return responseBuilder.speak(choices.map(item => item.name).join(',')).addElicitSlotDirective('listChoice').getResponse();
@@ -79,8 +84,11 @@ export class AddStationHandlerStore extends IntentHandler {
 
 
     canHandle(handlerInput: HandlerInput) {
-        return isExpectedIntent(handlerInput, 'AddStationIntent') && 'dialogState' in handlerInput.requestEnvelope.request ?
-            handlerInput.requestEnvelope.request.dialogState === 'COMPLETED' : false;
+        const request = handlerInput.requestEnvelope.request;
+        if (!isIntentRequest(request)) {
+            return false;
+        }
+        return isExpectedIntent(handlerInput, 'AddStationIntent') && request.intent.slots?.listChoice.value !== undefined;
 
     }
 

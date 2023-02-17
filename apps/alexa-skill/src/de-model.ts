@@ -22,7 +22,11 @@ export const deModel = {
                     'name': 'bekannterOrt',
                     'type': 'BekannteOrte',
                     'samples': ['{bekannterOrt}', 'Der ort soll {bekannterOrt} heisen.'],
-                }, { 'name': 'listChoice', 'type': 'AMAZON.NUMBER' }],
+                }, {
+                    'name': 'listChoice',
+                    'type': 'AMAZON.NUMBER',
+                    'samples': ['die {listChoice} wahl', '{listChoice}', 'das {listChoice} vorschlag', 'die {listChoice} vorschlag', 'der {listChoice} vorschalg'],
+                }],
                 'samples': ['Speichere {adresse} als {bekannterOrt}', 'Merke dir einen Neunen Ort', 'Speichere einen Neuen Ort'],
             }],
             'types': [{
@@ -51,8 +55,8 @@ export const deModel = {
                     'elicitationRequired': true,
                     'confirmationRequired': true,
                     'prompts': {
-                        'confirmation': 'Confirm.Slot.206116147410.876656949550',
                         'elicitation': 'Elicit.Slot.206116147410.876656949550',
+                        'confirmation': 'Confirm.Slot.206116147410.876656949550',
                     },
                 }, {
                     'name': 'listChoice',
@@ -103,5 +107,5 @@ export const deModel = {
             'id': 'Elicit.Slot.727577466108.1069117045784',
             'variations': [{ 'type': 'PlainText', 'value': 'Wahle den Besten vorschalg zwischen eins und funf.' }],
         }],
-    }, 'version': '18',
+    }, 'version': '20',
 } as const;
