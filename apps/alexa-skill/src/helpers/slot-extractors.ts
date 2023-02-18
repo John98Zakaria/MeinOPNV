@@ -1,7 +1,7 @@
 import { type Intent } from 'ask-sdk-model';
 
 interface SlotUnderstood {
-    heardAs: string | undefined;
+    heardAs: string;
     resolved: string;
     ERstatus: 'ER_SUCCESS_MATCH' | 'ER_SUCCESS_NO_MATCH' | 'ER_ERROR';
 }
@@ -27,7 +27,7 @@ export function getSlotValues<T>(
                 ) {
                 case 'ER_SUCCESS_MATCH':
                     slotValues.set(name as T, {
-                        heardAs: slotItem.value,
+                        heardAs: slotItem.value ?? 'Error',
                         resolved:
                             slotItem.resolutions.resolutionsPerAuthority[0]
                                 .values[0]?.value.name ?? 'Error',
@@ -36,7 +36,7 @@ export function getSlotValues<T>(
                     break;
                 case 'ER_SUCCESS_NO_MATCH':
                     slotValues.set(name as T, {
-                        heardAs: slotItem.value,
+                        heardAs: slotItem.value ?? 'Error',
                         resolved: '',
                         ERstatus: 'ER_SUCCESS_NO_MATCH',
                     });
@@ -46,7 +46,7 @@ export function getSlotValues<T>(
             }
         } else {
             slotValues.set(name as T, {
-                heardAs: slotItem.value,
+                heardAs: slotItem.value ?? 'Error',
                 resolved: '',
                 ERstatus: 'ER_ERROR',
             });

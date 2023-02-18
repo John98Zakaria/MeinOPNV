@@ -1,9 +1,4 @@
-import {
-    type GetNameFromList,
-    isExpectedIntent,
-    isIntentRequest,
-    mapGet,
-} from '../helpers/type-utiils.js';
+import { type GetNameFromList, isExpectedIntent, isIntentRequest, mapGet } from '../helpers/type-utiils.js';
 import { IntentHandler } from '../core/handler-base.js';
 import { type HandlerInput } from 'ask-sdk-core';
 import { getSlotValues } from '../helpers/slot-extractors.js';
@@ -52,8 +47,8 @@ export class AddStationHandlerGetLocationName extends IntentHandler {
         return (
             (isExpectedIntent(handlerInput, 'AddStationIntent') &&
                 request.dialogState === 'IN_PROGRESS' &&
-                request.intent.slots?.bekannterOrt === undefined) ||
-            request.intent.slots?.haltestelle === undefined
+                request.intent.slots?.bekannterOrt.value === undefined) ||
+            request.intent.slots?.haltestelle.value === undefined
         );
     }
 
@@ -107,12 +102,13 @@ export class AddStationHandlerSearchLocation extends IntentHandler {
             });
         }
         const haltestelle = mapGet(slots, 'haltestelle');
+        const haltestelleStr: string = haltestelle.resolved === '' ? haltestelle.heardAs : haltestelle.resolved;
         const listChoice = slots.get('listChoice');
 
         console.log(ort, haltestelle, listChoice);
 
         const choices = await bahnClient.locations(
-            haltestelle.heardAs as string,
+            haltestelleStr,
             { results: 5 },
         );
         const sessionAttribs =
