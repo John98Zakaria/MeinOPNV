@@ -26,15 +26,20 @@ export default defineConfig({
                     dest: 'dist',
                 },
                 { src: 'package.json', dest: 'dist' },
-                { src: '../../node_modules/hafas-client/p/db/base.json', dest: 'dist' },
-
+                {
+                    src: '../../node_modules/hafas-client/p/db/base.json',
+                    dest: 'dist',
+                },
             ],
         }),
         sentryRollupPlugin({
             org: 'myself-2o',
             project: 'alexa-bahn',
             // Specify the directory containing build artifacts
-            include: [{ paths: ['./dist'], ext: ['.js', '.cjs', '.map'] }, { paths: ['./src'], ext: ['.ts'] }],
+            include: [
+                { paths: ['./dist'], ext: ['.js', '.cjs', '.map'] },
+                { paths: ['./src'], ext: ['.ts'] },
+            ],
             ignore: ['node_modules'],
             urlPrefix: 'app:///../../src',
             stripCommonPrefix: true,

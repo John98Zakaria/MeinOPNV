@@ -1,5 +1,9 @@
 import * as Alexa from 'ask-sdk-core';
-import { type ErrorHandler, type HandlerInput, type RequestHandler } from 'ask-sdk-core';
+import {
+    type ErrorHandler,
+    type HandlerInput,
+    type RequestHandler,
+} from 'ask-sdk-core';
 import * as Sentry from '@sentry/serverless';
 import { isExpectedIntent } from '../helpers/type-utiils.js';
 import { IntentHandler } from '../core/handler-base.js';
@@ -7,11 +11,13 @@ import { type BahnSkillIntent } from '../core/types.js';
 
 export const LaunchRequestHandler: RequestHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
+        return (
+            Alexa.getRequestType(handlerInput.requestEnvelope) ===
+            'LaunchRequest'
+        );
     },
     async handle(handlerInput) {
         const speakOutput = 'Welcome, you can say Zur Arbeit';
-
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -23,7 +29,6 @@ export const LaunchRequestHandler: RequestHandler = {
 export class HelpIntentHandler extends IntentHandler {
     myIntentName: BahnSkillIntent = 'AMAZON.HelpIntent' as const;
 
-
     doHandle(handlerInput: HandlerInput) {
         const speakOutput = 'You can say hello to me! How can I help?';
 
@@ -32,28 +37,23 @@ export class HelpIntentHandler extends IntentHandler {
             .reprompt(speakOutput)
             .getResponse();
     }
-
 }
 
 export class CancelAndStopIntentHandler extends IntentHandler {
-
     myIntentName: BahnSkillIntent = 'AMAZON.StopIntent';
 
     canHandle(handlerInput: HandlerInput) {
-        return isExpectedIntent(handlerInput, 'AMAZON.CancelIntent')
-            || isExpectedIntent(handlerInput, 'AMAZON.StopIntent');
+        return (
+            isExpectedIntent(handlerInput, 'AMAZON.CancelIntent') ||
+            isExpectedIntent(handlerInput, 'AMAZON.StopIntent')
+        );
     }
-
 
     doHandle(handlerInput: HandlerInput) {
         const speakOutput = 'Goodbye!';
 
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .getResponse();
+        return handlerInput.responseBuilder.speak(speakOutput).getResponse();
     }
-
-
 }
 
 /* *
@@ -65,14 +65,14 @@ export class FallbackIntentHandler extends IntentHandler {
     myIntentName: BahnSkillIntent = 'AMAZON.FallbackIntent';
 
     doHandle(handlerInput: HandlerInput) {
-        const speakOutput = 'Leider habe ich dich nicht verstanden, versuche es nochmal';
+        const speakOutput =
+            'Leider habe ich dich nicht verstanden, versuche es nochmal';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
             .getResponse();
     }
-
 }
 
 /* *
@@ -82,7 +82,10 @@ export class FallbackIntentHandler extends IntentHandler {
  * */
 export const SessionEndedRequestHandler: RequestHandler = {
     canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
+        return (
+            Alexa.getRequestType(handlerInput.requestEnvelope) ===
+            'SessionEndedRequest'
+        );
     },
     handle(handlerInput) {
         // Any cleanup logic goes here.
@@ -97,15 +100,16 @@ export const SessionEndedRequestHandler: RequestHandler = {
  * */
 export const IntentReflectorHandler: RequestHandler = {
     canHandle(handlerInput: HandlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
+        return (
+            Alexa.getRequestType(handlerInput.requestEnvelope) ===
+            'IntentRequest'
+        );
     },
     handle(handlerInput: HandlerInput) {
         const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
         const speakOutput = `You just triggered ${intentName}`;
 
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .getResponse();
+        return handlerInput.responseBuilder.speak(speakOutput).getResponse();
     },
 };
 
@@ -119,8 +123,9 @@ export const ErrorHandler_: ErrorHandler = {
         return true;
     },
     async handle(handlerInput, error) {
-        const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
-        Sentry.withScope(scope => {
+        const speakOutput =
+            'Sorry, I had trouble doing what you asked. Please try again.';
+        Sentry.withScope((scope) => {
             Sentry.captureException(error, scope);
             Sentry.setContext('Handler Data', handlerInput);
         });

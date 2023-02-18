@@ -4,7 +4,6 @@ import { type Response } from 'ask-sdk-model';
 import { isExpectedIntent } from '../helpers/type-utiils.js';
 import { type BahnSkillIntent } from './types.js';
 
-
 export abstract class IntentHandler implements RequestHandler {
     abstract readonly myIntentName: BahnSkillIntent;
 
@@ -13,7 +12,9 @@ export abstract class IntentHandler implements RequestHandler {
     }
 
     handle(input: HandlerInput): Promise<Response> | Response {
-        const parentTransaction = SentryAWS.getCurrentHub().getScope()?.getTransaction();
+        const parentTransaction = SentryAWS.getCurrentHub()
+            .getScope()
+            ?.getTransaction();
         if (parentTransaction === undefined) {
             console.warn('Was not able to find senty parent transaction');
             return this.doHandle(input);
@@ -28,5 +29,4 @@ export abstract class IntentHandler implements RequestHandler {
     }
 
     abstract doHandle(input: HandlerInput): Promise<Response> | Response;
-
 }

@@ -1,4 +1,9 @@
-import { type GetNameFromList, isExpectedIntent, isIntentRequest, mapGet } from '../helpers/type-utiils.js';
+import {
+    type GetNameFromList,
+    isExpectedIntent,
+    isIntentRequest,
+    mapGet,
+} from '../helpers/type-utiils.js';
 import { IntentHandler } from '../core/handler-base.js';
 import { type HandlerInput } from 'ask-sdk-core';
 import { getSlotValues } from '../helpers/slot-extractors.js';
@@ -8,18 +13,20 @@ import { bahnClient, prisma } from '../external-clients.js';
 import { type Station } from 'hafas-client';
 
 const AddStationIntent = { name: 'AddStationIntent' } satisfies AlexaIntent;
-type AddStationIntentType = (typeof deModel.interactionModel.languageModel.intents[number] & typeof AddStationIntent)
+type AddStationIntentType =
+    (typeof deModel.interactionModel.languageModel.intents)[number] &
+    typeof AddStationIntent;
 
-type AddStationSlot = GetNameFromList<AddStationIntentType['slots']>
+type AddStationSlot = GetNameFromList<AddStationIntentType['slots']>;
 
 export class AddStationHandlerStart extends IntentHandler {
     myIntentName = 'AddStationIntent' as const;
 
-
     canHandle(handlerInput: HandlerInput) {
-        return isExpectedIntent(handlerInput, 'AddStationIntent')
-        && 'dialogState' in handlerInput.requestEnvelope.request ?
-            handlerInput.requestEnvelope.request.dialogState === 'STARTED' : false;
+        return isExpectedIntent(handlerInput, 'AddStationIntent') &&
+        'dialogState' in handlerInput.requestEnvelope.request
+            ? handlerInput.requestEnvelope.request.dialogState === 'STARTED'
+            : false;
     }
 
     async doHandle(handlerInput: HandlerInput) {
@@ -27,8 +34,7 @@ export class AddStationHandlerStart extends IntentHandler {
             throw Error('NotIntentRequest');
         }
 
-        return handlerInput
-            .responseBuilder
+        return handlerInput.responseBuilder
             .addDelegateDirective()
             .getResponse();
     }
@@ -37,15 +43,18 @@ export class AddStationHandlerStart extends IntentHandler {
 export class AddStationHandlerGetLocationName extends IntentHandler {
     myIntentName = 'AddStationIntent' as const;
 
-
     canHandle(handlerInput: HandlerInput) {
         const request = handlerInput.requestEnvelope.request;
         if (!isIntentRequest(request)) {
             return false;
         }
 
-        return isExpectedIntent(handlerInput, 'AddStationIntent')
-            && request.dialogState === 'IN_PROGRESS' && request.intent.slots?.bekannterOrt === undefined || request.intent.slots?.haltestelle === undefined;
+        return (
+            (isExpectedIntent(handlerInput, 'AddStationIntent') &&
+                request.dialogState === 'IN_PROGRESS' &&
+                request.intent.slots?.bekannterOrt === undefined) ||
+            request.intent.slots?.haltestelle === undefined
+        );
     }
 
     async doHandle(handlerInput: HandlerInput) {
@@ -53,27 +62,26 @@ export class AddStationHandlerGetLocationName extends IntentHandler {
             throw Error('NotIntentRequest');
         }
 
-        return handlerInput
-            .responseBuilder
+        return handlerInput.responseBuilder
             .addDelegateDirective()
             .getResponse();
     }
 }
 
-
 export class AddStationHandlerSearchLocation extends IntentHandler {
     myIntentName = 'AddStationIntent' as const;
-
 
     canHandle(handlerInput: HandlerInput) {
         const request = handlerInput.requestEnvelope.request;
         if (!isIntentRequest(request)) {
             return false;
         }
-        return isExpectedIntent(handlerInput, 'AddStationIntent')
-            && request.dialogState === 'IN_PROGRESS'
+        return (
+            isExpectedIntent(handlerInput, 'AddStationIntent') &&
+            request.dialogState === 'IN_PROGRESS' &&
             // User didn't choose yet
-            && request.intent.slots?.listChoice.value === undefined;
+            request.intent.slots?.listChoice.value === undefined
+        );
     }
 
     async doHandle(handlerInput: HandlerInput) {
@@ -91,7 +99,11 @@ export class AddStationHandlerSearchLocation extends IntentHandler {
             await prisma.unknownLocation.upsert({
                 where: { id: ort.heardAs ?? 'unkonwn' },
                 update: { count: { increment: 1 } },
-                create: { id: ort.heardAs ?? 'unknown', count: 1, text: ort.heardAs ?? 'unknown' },
+                create: {
+                    id: ort.heardAs ?? 'unknown',
+                    count: 1,
+                    text: ort.heardAs ?? 'unknown',
+                },
             });
         }
         const haltestelle = mapGet(slots, 'haltestelle');
@@ -99,30 +111,35 @@ export class AddStationHandlerSearchLocation extends IntentHandler {
 
         console.log(ort, haltestelle, listChoice);
 
-        const choices = await bahnClient.locations(haltestelle.heardAs as string, { results: 5 });
-        const sessionAttribs = handlerInput.attributesManager.getSessionAttributes();
+        const choices = await bahnClient.locations(
+            haltestelle.heardAs as string,
+            { results: 5 },
+        );
+        const sessionAttribs =
+            handlerInput.attributesManager.getSessionAttributes();
         sessionAttribs.bahn = choices;
         handlerInput.attributesManager.setSessionAttributes(sessionAttribs);
 
-
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        return responseBuilder.speak(choices.map(item => item.name).join(',')).addElicitSlotDirective('listChoice').getResponse();
+        return responseBuilder
+            .speak(choices.map((item) => item.name).join(','))
+            .addElicitSlotDirective('listChoice')
+            .getResponse();
     }
-
-
 }
 
 export class AddStationHandlerStore extends IntentHandler {
     myIntentName = 'AddStationIntent' as const;
-
 
     canHandle(handlerInput: HandlerInput) {
         const request = handlerInput.requestEnvelope.request;
         if (!isIntentRequest(request)) {
             return false;
         }
-        return isExpectedIntent(handlerInput, 'AddStationIntent') && request.intent.slots?.listChoice.value !== undefined;
-
+        return (
+            isExpectedIntent(handlerInput, 'AddStationIntent') &&
+            request.intent.slots?.listChoice.value !== undefined
+        );
     }
 
     async doHandle(handlerInput: HandlerInput) {
@@ -140,16 +157,16 @@ export class AddStationHandlerStore extends IntentHandler {
 
         console.log(ort, haltestelle, listChoice);
 
-
-        const sessionAttribs = handlerInput.attributesManager.getSessionAttributes();
+        const sessionAttribs =
+            handlerInput.attributesManager.getSessionAttributes();
         const bahnMoglichkeiten: Station[] = sessionAttribs.bahn;
         console.log(bahnMoglichkeiten);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         const finalStation: Station | undefined = bahnMoglichkeiten[parseInt(listChoice.heardAs, 10) - 1];
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        return responseBuilder.speak(finalStation.name ?? 'unknown').getResponse();
+        return responseBuilder
+            .speak(finalStation.name ?? 'unknown')
+            .getResponse();
     }
-
-
 }

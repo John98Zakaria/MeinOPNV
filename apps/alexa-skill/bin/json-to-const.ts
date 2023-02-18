@@ -9,15 +9,18 @@ console.error(inputFilePath);
 console.error(process.cwd());
 console.log(process.argv);
 
-
-if (modelName === undefined
-    || !parseFilePath('input', inputFilePath, '.json')
-    || !parseFilePath('output', outputFilePath, '.ts')) {
+if (
+    modelName === undefined ||
+    !parseFilePath('input', inputFilePath, '.json') ||
+    !parseFilePath('output', outputFilePath, '.ts')
+) {
     process.exit(1);
 }
 
 const inputFile = JSON.parse(fs.readFileSync(inputFilePath).toString());
 
-const output = `export const ${modelName} = ${JSON.stringify(inputFile)} as const;`;
+const output = `export const ${modelName} = ${JSON.stringify(
+    inputFile,
+)} as const;`;
 
 fs.writeFileSync(outputFilePath, output);

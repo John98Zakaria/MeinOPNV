@@ -1,11 +1,10 @@
 name: Deploy MyOPNV Alexa
 
-on: [ workflow_dispatch,push ]
-
+on: [ workflow_dispatch, push ]
 
 jobs:
   deploy-meinOPNV-skill:
-    name: "Deploy OPNV skill"
+    name: 'Deploy OPNV skill'
     runs-on: ubuntu-latest
 
     permissions:

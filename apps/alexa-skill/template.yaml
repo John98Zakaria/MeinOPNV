@@ -13,7 +13,7 @@ Globals:
 Metadata:
   AWS::ServerlessRepo::Application:
     Name: bahn-api-bot
-    Description: "Bot that calls the Bahn API"
+    Description: 'Bot that calls the Bahn API'
     Author: John Sorial
     HomePageUrl: https://github.com/user1/my-app-project
     SemanticVersion: 0.0.1
@@ -31,4 +31,3 @@ Resources:
       Environment:
         Variables:
           NODE_OPTIONS: --enable-source-maps
-
