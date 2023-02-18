@@ -34,6 +34,32 @@ export class AddStationHandlerStart extends IntentHandler {
     }
 }
 
+export class AddStationHandlerGetLocationName extends IntentHandler {
+    myIntentName = 'AddStationIntent' as const;
+
+
+    canHandle(handlerInput: HandlerInput) {
+        const request = handlerInput.requestEnvelope.request;
+        if (!isIntentRequest(request)) {
+            return false;
+        }
+
+        return isExpectedIntent(handlerInput, 'AddStationIntent')
+            && request.dialogState === 'IN_PROGRESS' && request.intent.slots?.bekannterOrt === undefined;
+    }
+
+    async doHandle(handlerInput: HandlerInput) {
+        if (!isIntentRequest(handlerInput.requestEnvelope.request)) {
+            throw Error('NotIntentRequest');
+        }
+
+        return handlerInput
+            .responseBuilder
+            .addDelegateDirective()
+            .getResponse();
+    }
+}
+
 
 export class AddStationHandlerSearchLocation extends IntentHandler {
     myIntentName = 'AddStationIntent' as const;
