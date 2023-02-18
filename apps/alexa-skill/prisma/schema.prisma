@@ -19,6 +19,12 @@ model User{
     userLocations Location[]
 }
 
+model UnknownLocation{
+    id       String    @id @default(auto()) @map("_id") @db.ObjectId
+    text String
+    count  Int
+}
+
 type AlexaDevice {
   deviceId String
   location String

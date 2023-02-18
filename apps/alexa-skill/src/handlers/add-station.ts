@@ -4,7 +4,7 @@ import { type HandlerInput } from 'ask-sdk-core';
 import { getSlotValues } from '../helpers/slot-extractors.js';
 import { type deModel } from '../de-model.js';
 import { type AlexaIntent } from '../core/types.js';
-import { bahnClient } from '../external-clients.js';
+import { bahnClient, prisma } from '../external-clients.js';
 import { type Station } from 'hafas-client';
 
 const AddStationIntent = { name: 'AddStationIntent' } satisfies AlexaIntent;
@@ -45,7 +45,7 @@ export class AddStationHandlerGetLocationName extends IntentHandler {
         }
 
         return isExpectedIntent(handlerInput, 'AddStationIntent')
-            && request.dialogState === 'IN_PROGRESS' && request.intent.slots?.bekannterOrt === undefined;
+            && request.dialogState === 'IN_PROGRESS' && request.intent.slots?.bekannterOrt === undefined || request.intent.slots?.haltestelle === undefined;
     }
 
     async doHandle(handlerInput: HandlerInput) {
@@ -87,12 +87,19 @@ export class AddStationHandlerSearchLocation extends IntentHandler {
         const slots = getSlotValues<AddStationSlot>(request.intent.slots);
 
         const ort = mapGet(slots, 'bekannterOrt');
-        const adresse = mapGet(slots, 'adresse');
+        if (ort.ERstatus === 'ER_SUCCESS_NO_MATCH') {
+            await prisma.unknownLocation.upsert({
+                where: { id: ort.heardAs ?? 'unkonwn' },
+                update: { count: { increment: 1 } },
+                create: { id: ort.heardAs ?? 'unknown', count: 1, text: ort.heardAs ?? 'unknown' },
+            });
+        }
+        const haltestelle = mapGet(slots, 'haltestelle');
         const listChoice = slots.get('listChoice');
 
-        console.log(ort, adresse, listChoice);
+        console.log(ort, haltestelle, listChoice);
 
-        const choices = await bahnClient.locations(adresse.heardAs as string, { results: 5 });
+        const choices = await bahnClient.locations(haltestelle.heardAs as string, { results: 5 });
         const sessionAttribs = handlerInput.attributesManager.getSessionAttributes();
         sessionAttribs.bahn = choices;
         handlerInput.attributesManager.setSessionAttributes(sessionAttribs);
@@ -128,10 +135,10 @@ export class AddStationHandlerStore extends IntentHandler {
         const slots = getSlotValues<AddStationSlot>(request.intent.slots);
 
         const ort = mapGet(slots, 'bekannterOrt');
-        const adresse = mapGet(slots, 'adresse');
+        const haltestelle = mapGet(slots, 'haltestelle');
         const listChoice = slots.get('listChoice');
 
-        console.log(ort, adresse, listChoice);
+        console.log(ort, haltestelle, listChoice);
 
 
         const sessionAttribs = handlerInput.attributesManager.getSessionAttributes();
