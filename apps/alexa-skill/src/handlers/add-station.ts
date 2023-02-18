@@ -113,7 +113,7 @@ export class AddStationHandlerStore extends IntentHandler {
         console.log(bahnMoglichkeiten);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        const finalStation: Station | undefined = bahnMoglichkeiten[parseInt(listChoice.heardAs, 10) + 1];
+        const finalStation: Station | undefined = bahnMoglichkeiten[parseInt(listChoice.heardAs, 10) - 1];
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         return responseBuilder.speak(finalStation.name ?? 'unknown').getResponse();
     }
